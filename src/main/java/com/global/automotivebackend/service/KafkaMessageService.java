@@ -1,13 +1,13 @@
 package com.global.automotivebackend.service;
 
-import com.global.automotivebackend.model.CompanyData;
-import com.global.automotivebackend.model.DeviceData;
-import com.global.automotivebackend.model.GpsData;
-import com.global.automotivebackend.model.VehicleData;
-import com.global.automotivebackend.repository.CompanyTopicRepository;
-import com.global.automotivebackend.repository.DeviceTopicRepository;
-import com.global.automotivebackend.repository.GpsTopicRepository;
-import com.global.automotivebackend.repository.VehicleTopicRepository;
+import com.global.automotivebackend.model.Company;
+import com.global.automotivebackend.model.Device;
+import com.global.automotivebackend.model.Gps;
+import com.global.automotivebackend.model.Vehicle;
+import com.global.automotivebackend.repository.CompanyRepository;
+import com.global.automotivebackend.repository.DeviceRepository;
+import com.global.automotivebackend.repository.GpsRepository;
+import com.global.automotivebackend.repository.VehicleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
@@ -21,33 +21,33 @@ public class KafkaMessageService {
     private final String deviceTopic="deviceTopic";
 
     @Autowired
-    private CompanyTopicRepository companyTopicRepository;
+    private CompanyRepository companyRepository;
     @Autowired
-    private DeviceTopicRepository deviceTopicRepository;
+    private DeviceRepository deviceRepository;
     @Autowired
-    private GpsTopicRepository gpsTopicRepository;
+    private GpsRepository gpsRepository;
     @Autowired
-    private VehicleTopicRepository vehicleTopicRepository;
+    private VehicleRepository vehicleRepository;
     @Autowired
     private KafkaTemplate<String,Object> kafkaTemplate;
 
-    public void sendCompanyData(CompanyData companyData) {
+    public void sendCompanyData(Company companyData) {
         kafkaTemplate.send(companyTopic,companyData);
-       companyTopicRepository.save(companyData);
+       companyRepository.save(companyData);
     }
 
-    public void sendVehicleData(VehicleData vehicleData) {
+    public void sendVehicleData(Vehicle vehicleData) {
         kafkaTemplate.send(vehicleTopic,vehicleData);
-        vehicleTopicRepository.save(vehicleData);
+        vehicleRepository.save(vehicleData);
     }
 
-    public void sendGpsData(GpsData gpsData) {
+    public void sendGpsData(Gps gpsData) {
         kafkaTemplate.send(gpsTopic,gpsData);
-        gpsTopicRepository.save(gpsData);
+        gpsRepository.save(gpsData);
     }
 
-    public void sendDeviceData(DeviceData deviceData) {
+    public void sendDeviceData(Device deviceData) {
         kafkaTemplate.send(deviceTopic,deviceData);
-        deviceTopicRepository.save(deviceData);
+        deviceRepository.save(deviceData);
     }
 }
