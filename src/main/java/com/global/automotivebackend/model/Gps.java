@@ -19,7 +19,7 @@ import java.util.UUID;
 public class Gps {
 
     @PrimaryKey
-    private Instant timeStatus;
+    private String timeStatus;
 
     @Column(value = "vehicle_id")
     private String vehicleId;

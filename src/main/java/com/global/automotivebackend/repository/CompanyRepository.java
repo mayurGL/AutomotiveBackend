@@ -11,15 +11,5 @@ import java.time.Instant;
 import java.util.Optional;
 
 @Repository
-public interface CompanyRepository extends CassandraRepository <Company, Instant>{
-
-    @Query
-    @AllowFiltering
-    Optional<Company> findByCompanyId(String companyId);
-
-    @Query
-    @Transactional
-    @AllowFiltering
-    void deleteByCompanyId(String companyId);
-
+public interface CompanyRepository extends CassandraRepository <Company, String>{
 }

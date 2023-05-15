@@ -2,7 +2,6 @@ package com.global.automotivebackend.controller;
 
 
 import com.global.automotivebackend.dto.CrudResponse;
-import com.global.automotivebackend.dto.VehicleDTO;
 import com.global.automotivebackend.model.Vehicle;
 import com.global.automotivebackend.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,17 +22,17 @@ public class VehicleController {
     }
 
     @PostMapping("/add")
-    public CrudResponse addVehicle(@RequestBody VehicleDTO vehicle){
-       return vehicleService.addVehicle(vehicle, Instant.now());
+    public CrudResponse addVehicle(@RequestBody Vehicle vehicle){
+       return vehicleService.addVehicle(vehicle, Instant.now().toString());
     }
 
     @PutMapping("/update")
-    public CrudResponse updateVehicle(@RequestBody VehicleDTO vehicle){
-       return vehicleService.updateVehicle(vehicle, Instant.now());
+    public CrudResponse updateVehicle(@RequestBody Vehicle vehicle){
+       return vehicleService.updateVehicle(vehicle, Instant.now().toString());
     }
 
-    @DeleteMapping("/delete/{id}")
-    public CrudResponse deleteVehicle(@PathVariable String id){
+    @DeleteMapping("/delete")
+    public CrudResponse deleteVehicle(@RequestParam String id){
         return vehicleService.deleteVehicleById(id);
     }
 

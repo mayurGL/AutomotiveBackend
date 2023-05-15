@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 @Repository
-public interface GpsRepository extends CassandraRepository<Gps, UUID> {
+public interface GpsRepository extends CassandraRepository<Gps, String> {
 }

@@ -15,15 +15,19 @@ import java.time.Instant;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Company {
+
+
     @PrimaryKey
-    private Instant timeStatus;
+    @Column(value = "company_id")
+    private String company_id;
+
+    private String created_time;
+
+    private String modified_time;
 
     private String createdBy;
 
     private String modifiedBy;
-
-    @Column(value = "company_id")
-    private String companyId;
 
     @Column(value = "company_name")
     private String companyName;

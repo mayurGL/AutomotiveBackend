@@ -1,6 +1,6 @@
 package com.global.automotivebackend.service;
 
-import com.global.automotivebackend.dto.CompanyDTO;
+
 import com.global.automotivebackend.dto.CrudResponse;
 import com.global.automotivebackend.model.Company;
 import com.global.automotivebackend.repository.CompanyRepository;
@@ -20,11 +20,11 @@ public class CompanyService {
         return companyRepository.findAll();
     }
 
-    public CrudResponse addCompany(CompanyDTO company, Instant timeStatus) {
+    public CrudResponse addCompany(Company company, String timeStatus) {
         CrudResponse crudResponse = new CrudResponse();
-        Company companyToBeSaved = new Company(timeStatus, company.getCreatedBy(), company.getModifiedBy(), company.getCompanyId(), company.getCompanyName(), company.getCompanyAddress());
+        Company companyToBeSaved = new Company(company.getCompany_id(), timeStatus,timeStatus, company.getCreatedBy(), company.getModifiedBy(), company.getCompanyName(), company.getCompanyAddress());
         companyRepository.save(companyToBeSaved);
-        crudResponse.setMessage("Company with " + company.getCompanyId() + " is added");
+        crudResponse.setMessage("Company with " + company.getCompany_id() + " is added");
         crudResponse.setStatus(true);
         return crudResponse;
     }
@@ -33,9 +33,11 @@ public class CompanyService {
 
         CrudResponse crudResponse = new CrudResponse();
 
-        Optional<Company> company = companyRepository.findByCompanyId(companyId);
+        Optional<Company> company = companyRepository.findById(companyId);
             if(company.isPresent())
-            {   companyRepository.deleteByCompanyId(companyId);
+            {
+                System.out.println(company.get());
+                companyRepository.deleteById(companyId);
                 crudResponse.setMessage("Company with "+companyId+" is deleted");
                 crudResponse.setStatus(true);
             }
@@ -47,20 +49,22 @@ public class CompanyService {
             return crudResponse;
     }
 
-    public CrudResponse updateCompany(CompanyDTO company, Instant timestatus){
+    public CrudResponse updateCompany(Company company, String modified_time){
 
         CrudResponse crudResponse = new CrudResponse();
-        Optional<Company> searchedCompany = companyRepository.findByCompanyId(company.getCompanyId());
+        Optional<Company> searchedCompany = companyRepository.findById(company.getCompany_id());
 
         if (searchedCompany.isPresent()){
-            Company companyToBeUpdated = new Company(timestatus, company.getCreatedBy(), company.getModifiedBy(), company.getCompanyId(), company.getCompanyName(), company.getCompanyAddress());
+
+            Company companyToBeUpdated = new Company(company.getCompany_id(), searchedCompany.get().getCreated_time(),modified_time,searchedCompany.get().getCreatedBy(), company.getModifiedBy(), company.getCompanyName(), company.getCompanyAddress());
+
             companyRepository.save(companyToBeUpdated);
-            crudResponse.setMessage("Company with "+company.getCompanyId()+" is updated");
+            crudResponse.setMessage("Company with "+company.getCompany_id()+" is updated");
             crudResponse.setStatus(true);
         }
 
         else {
-            crudResponse.setMessage("Company with "+company.getCompanyId()+" is not found");
+            crudResponse.setMessage("Company with "+company.getCompany_id()+" is not found");
             crudResponse.setStatus(false);
         }
         return crudResponse;

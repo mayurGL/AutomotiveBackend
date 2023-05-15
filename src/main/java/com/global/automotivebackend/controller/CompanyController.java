@@ -1,6 +1,6 @@
 package com.global.automotivebackend.controller;
 
-import com.global.automotivebackend.dto.CompanyDTO;
+
 import com.global.automotivebackend.dto.CrudResponse;
 import com.global.automotivebackend.model.Company;
 import com.global.automotivebackend.service.CompanyService;
@@ -24,18 +24,18 @@ public class CompanyController {
     }
 
     @PostMapping("/add")
-    public CrudResponse addCompany(@RequestBody CompanyDTO companyData){
-       return companyService.addCompany(companyData, Instant.now());
+    public CrudResponse addCompany(@RequestBody Company company){
+       return companyService.addCompany(company, Instant.now().toString());
     }
 
     @PutMapping("/update")
-    public CrudResponse updateCompany(@RequestBody CompanyDTO companyData){
-        return companyService.updateCompany(companyData, Instant.now());
+    public CrudResponse updateCompany(@RequestBody Company company){
+        return companyService.updateCompany(company, Instant.now().toString());
     }
 
-    @DeleteMapping("/delete/{id}")
-    public CrudResponse deleteCompany(@PathVariable String id){
-        return companyService.deleteCompanyById(id);
+    @DeleteMapping("/delete/{companyid}")
+    public CrudResponse deleteCompany(@PathVariable String companyid){
+        return companyService.deleteCompanyById(companyid);
     }
 
 

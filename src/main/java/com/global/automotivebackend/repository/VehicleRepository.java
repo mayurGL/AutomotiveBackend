@@ -8,17 +8,12 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface VehicleRepository extends CassandraRepository<Vehicle, Instant> {
+public interface VehicleRepository extends CassandraRepository<Vehicle, String> {
 
-    @Query
     @AllowFiltering
-    Optional<Vehicle> findByVehicleId(String vehicleId);
-
-    @Query
-    @Transactional
-    @AllowFiltering
-    void deleteByVehicleId(String vehicleId);
+    Optional<List<Vehicle>> findByVehicleId(String vehicleId);
 }

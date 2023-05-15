@@ -18,7 +18,9 @@ import java.time.Instant;
 public class Vehicle {
 
     @PrimaryKey
-    private Instant timeStatus;
+    private String created_time;
+
+    private String modified_time;
 
     private String createdBy;
 

@@ -17,7 +17,9 @@ import java.time.Instant;
 @AllArgsConstructor
 public class Device {
     @PrimaryKey
-    private Instant timeStatus;
+    private String created_time;
+
+    private String modified_time;
 
     private String createdBy;
 

@@ -1,11 +1,8 @@
 package com.global.automotivebackend.controller;
 
 import com.global.automotivebackend.dto.CrudResponse;
-import com.global.automotivebackend.dto.DeviceDTO;
 import com.global.automotivebackend.model.Device;
-import com.global.automotivebackend.model.Vehicle;
 import com.global.automotivebackend.service.DeviceService;
-import com.global.automotivebackend.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,17 +22,17 @@ public class DeviceController {
     }
 
     @PostMapping("/add")
-    public CrudResponse addDevice(@RequestBody DeviceDTO device){
-        return deviceService.addDevice(device, Instant.now());
+    public CrudResponse addDevice(@RequestBody Device device){
+        return deviceService.addDevice(device, Instant.now().toString());
     }
 
     @PutMapping("/update")
-    public CrudResponse updateDevice(@RequestBody DeviceDTO device){
-        return deviceService.updateDevice(device,Instant.now());
+    public CrudResponse updateDevice(@RequestBody Device device){
+        return deviceService.updateDevice(device,Instant.now().toString());
     }
 
-    @DeleteMapping("/delete/{id}")
-    public CrudResponse deleteDevice(@PathVariable String id){
+    @DeleteMapping("/delete")
+    public CrudResponse deleteDevice(@RequestParam String id){
         return deviceService.deleteDeviceById(id);
     }
 }
