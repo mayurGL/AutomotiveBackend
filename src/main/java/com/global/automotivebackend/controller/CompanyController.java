@@ -19,24 +19,23 @@ public class CompanyController {
     private CompanyService companyService;
 
     @GetMapping("/all")
-    public List<Company> getAllCompanies(){
+    public List<Company> getAllCompanies() {
         return companyService.getAllCompanies();
     }
 
     @PostMapping("/add")
-    public CrudResponse addCompany(@RequestBody Company company){
-       return companyService.addCompany(company, Instant.now().toString());
+    public CrudResponse addCompany(@RequestBody Company company) {
+        return companyService.addCompany(company, Instant.now().toString());
     }
 
     @PutMapping("/update")
-    public CrudResponse updateCompany(@RequestBody Company company){
+    public CrudResponse updateCompany(@RequestBody Company company) {
         return companyService.updateCompany(company, Instant.now().toString());
     }
 
     @DeleteMapping("/delete/{companyid}")
-    public CrudResponse deleteCompany(@PathVariable String companyid){
+    public CrudResponse deleteCompany(@PathVariable String companyid) {
         return companyService.deleteCompanyById(companyid);
     }
-
 
 }

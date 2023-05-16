@@ -9,23 +9,25 @@ import org.springframework.kafka.config.TopicBuilder;
 public class KafkaTopicConfig {
 
     @Bean
-    public NewTopic gpsTopic(){
+    public NewTopic gpsTopic() {
         return TopicBuilder.name("gpsTopic")
                 .build();
     }
 
     @Bean
-    public NewTopic companyTopic(){
+    public NewTopic companyTopic() {
         return TopicBuilder.name("companyTopic")
                 .build();
     }
+
     @Bean
-    public NewTopic vehicleTopic(){
+    public NewTopic vehicleTopic() {
         return TopicBuilder.name("vehicleTopic")
                 .build();
     }
+
     @Bean
-    public NewTopic deviceTopic(){
+    public NewTopic deviceTopic() {
         return TopicBuilder.name("deviceTopic")
                 .build();
     }

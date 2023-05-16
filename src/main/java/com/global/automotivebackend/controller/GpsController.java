@@ -18,7 +18,7 @@ public class GpsController {
     private GpsService gpsService;
 
     @GetMapping("/all")
-    public List<Gps> getAllGps(){
-       return gpsService.getAllGps();
+    public List<Gps> getAllGps() {
+        return gpsService.getAllGps();
     }
 }

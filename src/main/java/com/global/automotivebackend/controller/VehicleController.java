@@ -17,22 +17,22 @@ public class VehicleController {
     private VehicleService vehicleService;
 
     @GetMapping("/all")
-    public List<Vehicle> findAllVehicles(){
+    public List<Vehicle> findAllVehicles() {
         return vehicleService.getAllVehicles();
     }
 
     @PostMapping("/add")
-    public CrudResponse addVehicle(@RequestBody Vehicle vehicle){
-       return vehicleService.addVehicle(vehicle, Instant.now().toString());
+    public CrudResponse addVehicle(@RequestBody Vehicle vehicle) {
+        return vehicleService.addVehicle(vehicle, Instant.now().toString());
     }
 
     @PutMapping("/update")
-    public CrudResponse updateVehicle(@RequestBody Vehicle vehicle){
-       return vehicleService.updateVehicle(vehicle, Instant.now().toString());
+    public CrudResponse updateVehicle(@RequestBody Vehicle vehicle) {
+        return vehicleService.updateVehicle(vehicle, Instant.now().toString());
     }
 
     @DeleteMapping("/delete")
-    public CrudResponse deleteVehicle(@RequestParam String id){
+    public CrudResponse deleteVehicle(@RequestParam String id) {
         return vehicleService.deleteVehicleById(id);
     }
 

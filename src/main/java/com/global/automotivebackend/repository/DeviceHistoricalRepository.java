@@ -1,6 +1,5 @@
 package com.global.automotivebackend.repository;
 
-import com.global.automotivebackend.model.CompanyHistorical;
 import com.global.automotivebackend.model.DeviceHistorical;
 import org.springframework.data.cassandra.repository.CassandraRepository;
 
