@@ -25,28 +25,28 @@ public class AutomotiveBackendApplication implements CommandLineRunner {
     private final Random random = new Random();
 
     private final List<Vehicle> vehicles = Arrays.asList(
-            new Vehicle(null, null, "Mayur", "Mayur", "1", "GL110", "Suzuki", "Dzire", 2017),
-            new Vehicle(null, null, "Mayur", "Mayur", "2", "HCL237", "Honda", "Accord", 2020),
-            new Vehicle(null, null, "Mayur", "Mayur", "3", "IBM404", "Hyundai", "Aura", 2023),
-            new Vehicle(null, null, "Mayur", "Mayur", "4", "TCS925", "Toyota", "Innova", 2015),
-            new Vehicle(null, null, "Mayur", "Mayur", "5", "INFY202", "Tata", "Tiago", 2017),
-            new Vehicle(null, null, "Mayur", "Mayur", "6", "EY365", "Kia", "Seltos", 2019)
+            new Vehicle("1", "GL110", "Suzuki", "Dzire", 2017, null, null, "Mayur", "Mayur"),
+            new Vehicle("2", "HCL237", "Honda", "Accord", 2020, null, null, "Mayur", "Mayur"),
+            new Vehicle("3", "IBM404", "Hyundai", "Aura", 2023, null, null, "Mayur", "Mayur"),
+            new Vehicle("4", "TCS965", "Toyota", "Innova", 2015, null, null, "Mayur", "Mayur"),
+            new Vehicle("5", "INF202", "Tata", "Tiago", 2017, null, null, "Mayur", "Mayur"),
+            new Vehicle("6", "EY365", "Kia", "Seltos", 2015, null, null, "Mayur", "Mayur")
     );
 
     private final List<Device> devices = Arrays.asList(
-            new Device(null, null, "Mayur", "Mayur", "1", "sensor", "temperature sensor"),
-            new Device(null, null, "Mayur", "Mayur", "2", "sensor", "voltage sensor"),
-            new Device(null, null, "Mayur", "Mayur", "3", "sensor", "parking sensor")
+            new Device("1", "sensor", "temperature sensor", null, null, "Mayur", "Mayur"),
+            new Device("2", "sensor", "voltage sensor", null, null, "Mayur", "Mayur"),
+            new Device("3", "sensor", "parking sensor", null, null, "Mayur", "Mayur")
     );
 
 
     private final List<Company> companies = Arrays.asList(
-            new Company("GL110", null, null, "Mayur", "Mayur", "GlobalLogic", "Noida"),
-            new Company("HCL237", null, null, "Mayur", "Mayur", "HCL", "Chennai"),
-            new Company("IBM404", null, null, "Mayur", "Mayur", "IBM", "Bangalore"),
-            new Company("TCS925", null, null, "Mayur", "Mayur", "TCS", "Kolkata"),
-            new Company("INFO123", null, null, "Mayur", "Mayur", "INFOSYS", "Pune"),
-            new Company("EY365", null, null, "Mayur", "Mayur", "EY", "Noida")
+            new Company("GL110", "GlobalLogic", "Noida", null, null, "Mayur", "Mayur"),
+            new Company("HCL237", "HCL", "Chennai", null, null, "Mayur", "Mayur"),
+            new Company("IBM404", "IBM", "Bangalore", null, null, "Mayur", "Mayur"),
+            new Company("TCS925", "TCS", "Hyderabad", null, null, "Mayur", "Mayur"),
+            new Company("INFO123", "Infosys", "Pune", null, null, "Mayur", "Mayur"),
+            new Company("EY365", "EY", "Noida", null, null, "Mayur", "Mayur")
     );
 
 

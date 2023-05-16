@@ -18,20 +18,15 @@ import java.time.Instant;
 public class Vehicle {
 
     @PrimaryKey
-    private String created_time;
-
-    private String modified_time;
-
-    private String createdBy;
-
-    private String modifiedBy;
-
     @Column(value = "vehicle_id")
     private String vehicleId;
-
     @Column(value = "company_id")
     private String companyId;
     private String make;
     private String model;
     private int year;
+    private String created_time;
+    private String modified_time;
+    private String createdBy;
+    private String modifiedBy;
 }

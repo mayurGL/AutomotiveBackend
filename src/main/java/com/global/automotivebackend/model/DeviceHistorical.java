@@ -7,22 +7,21 @@ import org.springframework.data.cassandra.core.mapping.Column;
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.Table;
 
-import java.time.Instant;
-
+import java.util.UUID;
 
 @Table
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Company {
-
+public class DeviceHistorical {
     @PrimaryKey
-    @Column(value = "company_id")
-    private String company_id;
-    @Column(value = "company_name")
-    private String companyName;
-    @Column(value = "company_address")
-    private String companyAddress;
+    private UUID id;
+    @Column(value = "device_id")
+    private String deviceId;
+    @Column(value = "device_type")
+    private String deviceType;
+    @Column(value = "device_name")
+    private String deviceName;
     private String created_time;
     private String modified_time;
     private String createdBy;

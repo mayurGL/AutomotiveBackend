@@ -17,20 +17,14 @@ import java.time.Instant;
 @AllArgsConstructor
 public class Device {
     @PrimaryKey
-    private String created_time;
-
-    private String modified_time;
-
-    private String createdBy;
-
-    private String modifiedBy;
-
     @Column(value = "device_id")
     private String deviceId;
-
     @Column(value = "device_type")
     private String deviceType;
-
     @Column(value = "device_name")
     private String deviceName;
+    private String created_time;
+    private String modified_time;
+    private String createdBy;
+    private String modifiedBy;
 }
