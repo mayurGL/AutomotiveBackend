@@ -24,30 +24,12 @@ public class AutomotiveBackendApplication implements CommandLineRunner {
 
     private final Random random = new Random();
 
-    private final List<Vehicle> vehicles = Arrays.asList(
-            new Vehicle("1", "GL110", "Suzuki", "Dzire", 2017, null, null, "Mayur", "Mayur"),
-            new Vehicle("2", "HCL237", "Honda", "Accord", 2020, null, null, "Mayur", "Mayur"),
-            new Vehicle("3", "IBM404", "Hyundai", "Aura", 2023, null, null, "Mayur", "Mayur"),
-            new Vehicle("4", "TCS965", "Toyota", "Innova", 2015, null, null, "Mayur", "Mayur"),
-            new Vehicle("5", "INF202", "Tata", "Tiago", 2017, null, null, "Mayur", "Mayur"),
-            new Vehicle("6", "EY365", "Kia", "Seltos", 2015, null, null, "Mayur", "Mayur")
-    );
+    private final List<Vehicle> vehicles = Arrays.asList(new Vehicle("1", "GL110", "Suzuki", "Dzire", 2017, null, null, "Mayur", "Mayur"), new Vehicle("2", "HCL237", "Honda", "Accord", 2020, null, null, "Mayur", "Mayur"), new Vehicle("3", "IBM404", "Hyundai", "Aura", 2023, null, null, "Mayur", "Mayur"), new Vehicle("4", "TCS965", "Toyota", "Innova", 2015, null, null, "Mayur", "Mayur"), new Vehicle("5", "INF202", "Tata", "Tiago", 2017, null, null, "Mayur", "Mayur"), new Vehicle("6", "EY365", "Kia", "Seltos", 2015, null, null, "Mayur", "Mayur"));
 
-    private final List<Device> devices = Arrays.asList(
-            new Device("1", "sensor", "temperature sensor", null, null, "Mayur", "Mayur"),
-            new Device("2", "sensor", "voltage sensor", null, null, "Mayur", "Mayur"),
-            new Device("3", "sensor", "parking sensor", null, null, "Mayur", "Mayur")
-    );
+    private final List<Device> devices = Arrays.asList(new Device("1", "sensor", "temperature sensor", null, null, "Mayur", "Mayur"), new Device("2", "sensor", "voltage sensor", null, null, "Mayur", "Mayur"), new Device("3", "sensor", "parking sensor", null, null, "Mayur", "Mayur"));
 
 
-    private final List<Company> companies = Arrays.asList(
-            new Company("GL110", "GlobalLogic", "Noida", null, null, "Mayur", "Mayur"),
-            new Company("HCL237", "HCL", "Chennai", null, null, "Mayur", "Mayur"),
-            new Company("IBM404", "IBM", "Bangalore", null, null, "Mayur", "Mayur"),
-            new Company("TCS925", "TCS", "Hyderabad", null, null, "Mayur", "Mayur"),
-            new Company("INFO123", "Infosys", "Pune", null, null, "Mayur", "Mayur"),
-            new Company("EY365", "EY", "Noida", null, null, "Mayur", "Mayur")
-    );
+    private final List<Company> companies = Arrays.asList(new Company("GL110", "GlobalLogic", "Noida", null, null, "Mayur", "Mayur"), new Company("HCL237", "HCL", "Chennai", null, null, "Mayur", "Mayur"), new Company("IBM404", "IBM", "Bangalore", null, null, "Mayur", "Mayur"), new Company("TCS925", "TCS", "Hyderabad", null, null, "Mayur", "Mayur"), new Company("INFO123", "Infosys", "Pune", null, null, "Mayur", "Mayur"), new Company("EY365", "EY", "Noida", null, null, "Mayur", "Mayur"));
 
 
     public static void main(String[] args) {

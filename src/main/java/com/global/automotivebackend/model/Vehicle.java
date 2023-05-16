@@ -8,8 +8,6 @@ import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.Table;
 import org.springframework.stereotype.Component;
 
-import java.time.Instant;
-
 @Table
 @Component
 @Data

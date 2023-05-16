@@ -17,22 +17,22 @@ public class DeviceController {
     private DeviceService deviceService;
 
     @GetMapping("/all")
-    public List<Device> findAllDevices(){
+    public List<Device> findAllDevices() {
         return deviceService.getAllDevices();
     }
 
     @PostMapping("/add")
-    public CrudResponse addDevice(@RequestBody Device device){
+    public CrudResponse addDevice(@RequestBody Device device) {
         return deviceService.addDevice(device, Instant.now().toString());
     }
 
     @PutMapping("/update")
-    public CrudResponse updateDevice(@RequestBody Device device){
-        return deviceService.updateDevice(device,Instant.now().toString());
+    public CrudResponse updateDevice(@RequestBody Device device) {
+        return deviceService.updateDevice(device, Instant.now().toString());
     }
 
     @DeleteMapping("/delete")
-    public CrudResponse deleteDevice(@RequestParam String id){
+    public CrudResponse deleteDevice(@RequestParam String id) {
         return deviceService.deleteDeviceById(id);
     }
 }

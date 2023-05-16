@@ -37,6 +37,6 @@ public class KafkaListeners {
     void vehicleTopicListener(String data) throws JsonProcessingException {
 
         ObjectMapper objectMapper = new ObjectMapper();
-        Vehicle vehicle = objectMapper.readValue(data,Vehicle.class);
+        Vehicle vehicle = objectMapper.readValue(data, Vehicle.class);
     }
 }
