@@ -17,8 +17,7 @@ import java.time.Instant;
 @AllArgsConstructor
 public class Device {
     @PrimaryKey
-    @Column(value = "device_id")
-    private String deviceId;
+    private String device_id;
     @Column(value = "device_type")
     private String deviceType;
     @Column(value = "device_name")

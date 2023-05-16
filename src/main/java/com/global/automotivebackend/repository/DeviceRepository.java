@@ -14,7 +14,5 @@ import java.util.Optional;
 @Repository
 public interface DeviceRepository extends CassandraRepository<Device, String> {
 
-    @AllowFiltering
-    Optional<List<Device>> findByDeviceId(String deviceId);
 
 }

@@ -27,11 +27,11 @@ public class VehicleService {
 
     public CrudResponse addVehicle(Vehicle vehicle, String timeStatus) {
         CrudResponse crudResponse = new CrudResponse();
-        Vehicle vehicleToBeSaved = new Vehicle(vehicle.getVehicleId(), vehicle.getCompanyId(), vehicle.getMake(), vehicle.getModel(), vehicle.getYear(), timeStatus,timeStatus, vehicle.getCreatedBy(), vehicle.getModifiedBy());
-        VehicleHistorical vehicleHistorical = new VehicleHistorical(UUID.randomUUID(), vehicle.getVehicleId(), vehicle.getCompanyId(), vehicle.getMake(), vehicle.getModel(), vehicle.getYear(), timeStatus,timeStatus, vehicle.getCreatedBy(), vehicle.getModifiedBy());
+        Vehicle vehicleToBeSaved = new Vehicle(vehicle.getVehicle_id(), vehicle.getCompanyId(), vehicle.getMake(), vehicle.getModel(), vehicle.getYear(), timeStatus,timeStatus, vehicle.getCreatedBy(), vehicle.getModifiedBy());
+        VehicleHistorical vehicleHistorical = new VehicleHistorical(UUID.randomUUID(), vehicle.getVehicle_id(), vehicle.getCompanyId(), vehicle.getMake(), vehicle.getModel(), vehicle.getYear(), timeStatus,timeStatus, vehicle.getCreatedBy(), vehicle.getModifiedBy());
         vehicleRepository.save(vehicleToBeSaved);
         vehicleHistoricalRepository.save(vehicleHistorical);
-        crudResponse.setMessage("Vehicle with " + vehicle.getVehicleId() + " is added");
+        crudResponse.setMessage("Vehicle with " + vehicle.getVehicle_id() + " is added");
         crudResponse.setStatus(true);
         return crudResponse;
     }
@@ -39,18 +39,18 @@ public class VehicleService {
     public CrudResponse updateVehicle(Vehicle vehicle, String modified_time){
 
         CrudResponse crudResponse = new CrudResponse();
-        Optional<Vehicle> searchedVehicles = vehicleRepository.findById(vehicle.getVehicleId());
+        Optional<Vehicle> searchedVehicles = vehicleRepository.findById(vehicle.getVehicle_id());
         if (searchedVehicles.isPresent()){
             Vehicle foundVehicle = searchedVehicles.get();
-            Vehicle updateVehicle = new Vehicle(vehicle.getVehicleId(), vehicle.getCompanyId(), vehicle.getMake(), vehicle.getModel(), vehicle.getYear(),foundVehicle.getCreated_time(), modified_time, foundVehicle.getCreatedBy(), vehicle.getModifiedBy());
-            VehicleHistorical vehicleHistorical = new VehicleHistorical(UUID.randomUUID(), vehicle.getVehicleId(), vehicle.getCompanyId(), vehicle.getMake(), vehicle.getModel(), vehicle.getYear(),foundVehicle.getCreated_time(), modified_time, foundVehicle.getCreatedBy(), vehicle.getModifiedBy());
+            Vehicle updateVehicle = new Vehicle(vehicle.getVehicle_id(), vehicle.getCompanyId(), vehicle.getMake(), vehicle.getModel(), vehicle.getYear(),foundVehicle.getCreated_time(), modified_time, foundVehicle.getCreatedBy(), vehicle.getModifiedBy());
+            VehicleHistorical vehicleHistorical = new VehicleHistorical(UUID.randomUUID(), vehicle.getVehicle_id(), vehicle.getCompanyId(), vehicle.getMake(), vehicle.getModel(), vehicle.getYear(),foundVehicle.getCreated_time(), modified_time, foundVehicle.getCreatedBy(), vehicle.getModifiedBy());
             vehicleRepository.save(updateVehicle);
             vehicleHistoricalRepository.save(vehicleHistorical);
-            crudResponse.setMessage("Vehicle with id "+vehicle.getVehicleId()+" is updated");
+            crudResponse.setMessage("Vehicle with id "+vehicle.getVehicle_id()+" is updated");
             crudResponse.setStatus(true);
         }
         else {
-            crudResponse.setMessage("Vehicle with id "+vehicle.getVehicleId()+" is not found");
+            crudResponse.setMessage("Vehicle with id "+vehicle.getVehicle_id()+" is not found");
             crudResponse.setStatus(false);
         }
         return crudResponse;

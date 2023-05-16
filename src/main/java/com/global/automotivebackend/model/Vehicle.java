@@ -18,8 +18,7 @@ import java.time.Instant;
 public class Vehicle {
 
     @PrimaryKey
-    @Column(value = "vehicle_id")
-    private String vehicleId;
+    private String vehicle_id;
     @Column(value = "company_id")
     private String companyId;
     private String make;

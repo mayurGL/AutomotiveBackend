@@ -14,6 +14,4 @@ import java.util.Optional;
 @Repository
 public interface VehicleRepository extends CassandraRepository<Vehicle, String> {
 
-    @AllowFiltering
-    Optional<List<Vehicle>> findByVehicleId(String vehicleId);
 }
