@@ -6,7 +6,7 @@ import com.global.automotivebackend.service.DeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -23,16 +23,17 @@ public class DeviceController {
 
     @PostMapping("/add")
     public CrudResponse addDevice(@RequestBody Device device) {
-        return deviceService.addDevice(device, Instant.now().toString());
+        return deviceService.addDevice(device, LocalDateTime.now());
     }
 
     @PutMapping("/update")
     public CrudResponse updateDevice(@RequestBody Device device) {
-        return deviceService.updateDevice(device, Instant.now().toString());
+        System.out.println(device);
+        return deviceService.updateDevice(device, LocalDateTime.now());
     }
 
-    @DeleteMapping("/delete")
-    public CrudResponse deleteDevice(@RequestParam String id) {
+    @DeleteMapping("/delete/{id}")
+    public CrudResponse deleteDevice(@PathVariable Integer id) {
         return deviceService.deleteDeviceById(id);
     }
 }

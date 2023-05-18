@@ -7,6 +7,7 @@ import org.springframework.data.cassandra.core.mapping.Column;
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.Table;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Table
@@ -18,14 +19,21 @@ public class VehicleHistorical {
     @PrimaryKey
     private UUID id;
     @Column(value = "vehicle_id")
-    private String vehicleId;
+    private int vehicleId;
     @Column(value = "company_id")
-    private String companyId;
+    private int companyId;
+    @Column(value = "make")
     private String make;
+    @Column(value = "model")
     private String model;
+    @Column(value = "year")
     private int year;
-    private String created_time;
-    private String modified_time;
+    @Column(value = "created_time")
+    private LocalDateTime createdTime;
+    @Column(value = "modified_time")
+    private LocalDateTime modifiedTime;
+    @Column(value = "created_by")
     private String createdBy;
+    @Column(value = "modified_by")
     private String modifiedBy;
 }

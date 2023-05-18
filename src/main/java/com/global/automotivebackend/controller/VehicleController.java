@@ -1,13 +1,12 @@
 package com.global.automotivebackend.controller;
 
-
 import com.global.automotivebackend.dto.CrudResponse;
 import com.global.automotivebackend.model.Vehicle;
 import com.global.automotivebackend.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -23,18 +22,17 @@ public class VehicleController {
 
     @PostMapping("/add")
     public CrudResponse addVehicle(@RequestBody Vehicle vehicle) {
-        return vehicleService.addVehicle(vehicle, Instant.now().toString());
+        return vehicleService.addVehicle(vehicle, LocalDateTime.now());
     }
 
     @PutMapping("/update")
     public CrudResponse updateVehicle(@RequestBody Vehicle vehicle) {
-        return vehicleService.updateVehicle(vehicle, Instant.now().toString());
+        return vehicleService.updateVehicle(vehicle, LocalDateTime.now());
     }
 
-    @DeleteMapping("/delete")
-    public CrudResponse deleteVehicle(@RequestParam String id) {
+    @DeleteMapping("/delete/{id}")
+    public CrudResponse deleteVehicle(@PathVariable Integer id) {
         return vehicleService.deleteVehicleById(id);
     }
-
 
 }

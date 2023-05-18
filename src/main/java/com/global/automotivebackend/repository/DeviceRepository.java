@@ -5,7 +5,5 @@ import org.springframework.data.cassandra.repository.CassandraRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface DeviceRepository extends CassandraRepository<Device, String> {
-
-
+public interface DeviceRepository extends CassandraRepository<Device, Integer> {
 }

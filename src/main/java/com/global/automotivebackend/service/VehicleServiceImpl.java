@@ -8,6 +8,7 @@ import com.global.automotivebackend.repository.VehicleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -24,37 +25,37 @@ public class VehicleServiceImpl implements VehicleService {
         return vehicleRepository.findAll();
     }
 
-    public CrudResponse addVehicle(Vehicle vehicle, String timeStatus) {
+    public CrudResponse addVehicle(Vehicle vehicle, LocalDateTime timestamp) {
         CrudResponse crudResponse = new CrudResponse();
-        Vehicle vehicleToBeSaved = new Vehicle(vehicle.getVehicle_id(), vehicle.getCompanyId(), vehicle.getMake(), vehicle.getModel(), vehicle.getYear(), timeStatus, timeStatus, vehicle.getCreatedBy(), vehicle.getModifiedBy());
-        VehicleHistorical vehicleHistorical = new VehicleHistorical(UUID.randomUUID(), vehicle.getVehicle_id(), vehicle.getCompanyId(), vehicle.getMake(), vehicle.getModel(), vehicle.getYear(), timeStatus, timeStatus, vehicle.getCreatedBy(), vehicle.getModifiedBy());
+        Vehicle vehicleToBeSaved = new Vehicle(vehicle.getVehicleId(), vehicle.getCompanyId(), vehicle.getMake(), vehicle.getModel(), vehicle.getYear(), timestamp, timestamp, vehicle.getCreatedBy(), vehicle.getModifiedBy());
+        VehicleHistorical vehicleHistorical = new VehicleHistorical(UUID.randomUUID(), vehicle.getVehicleId(), vehicle.getCompanyId(), vehicle.getMake(), vehicle.getModel(), vehicle.getYear(), timestamp, timestamp, vehicle.getCreatedBy(), vehicle.getModifiedBy());
         vehicleRepository.save(vehicleToBeSaved);
         vehicleHistoricalRepository.save(vehicleHistorical);
-        crudResponse.setMessage("Vehicle with " + vehicle.getVehicle_id() + " is added");
+        crudResponse.setMessage("Vehicle with " + vehicle.getVehicleId() + " is added");
         crudResponse.setStatus(true);
         return crudResponse;
     }
 
-    public CrudResponse updateVehicle(Vehicle vehicle, String modified_time) {
+    public CrudResponse updateVehicle(Vehicle vehicle, LocalDateTime modifiedTime) {
 
         CrudResponse crudResponse = new CrudResponse();
-        Optional<Vehicle> searchedVehicles = vehicleRepository.findById(vehicle.getVehicle_id());
+        Optional<Vehicle> searchedVehicles = vehicleRepository.findById(vehicle.getVehicleId());
         if (searchedVehicles.isPresent()) {
             Vehicle foundVehicle = searchedVehicles.get();
-            Vehicle updateVehicle = new Vehicle(vehicle.getVehicle_id(), vehicle.getCompanyId(), vehicle.getMake(), vehicle.getModel(), vehicle.getYear(), foundVehicle.getCreated_time(), modified_time, foundVehicle.getCreatedBy(), vehicle.getModifiedBy());
-            VehicleHistorical vehicleHistorical = new VehicleHistorical(UUID.randomUUID(), vehicle.getVehicle_id(), vehicle.getCompanyId(), vehicle.getMake(), vehicle.getModel(), vehicle.getYear(), foundVehicle.getCreated_time(), modified_time, foundVehicle.getCreatedBy(), vehicle.getModifiedBy());
+            Vehicle updateVehicle = new Vehicle(vehicle.getVehicleId(), vehicle.getCompanyId(), vehicle.getMake(), vehicle.getModel(), vehicle.getYear(), foundVehicle.getCreatedTime(), modifiedTime, foundVehicle.getCreatedBy(), vehicle.getModifiedBy());
+            VehicleHistorical vehicleHistorical = new VehicleHistorical(UUID.randomUUID(), vehicle.getVehicleId(), vehicle.getCompanyId(), vehicle.getMake(), vehicle.getModel(), vehicle.getYear(), foundVehicle.getCreatedTime(), modifiedTime, foundVehicle.getCreatedBy(), vehicle.getModifiedBy());
             vehicleRepository.save(updateVehicle);
             vehicleHistoricalRepository.save(vehicleHistorical);
-            crudResponse.setMessage("Vehicle with id " + vehicle.getVehicle_id() + " is updated");
+            crudResponse.setMessage("Vehicle with id " + vehicle.getVehicleId() + " is updated");
             crudResponse.setStatus(true);
         } else {
-            crudResponse.setMessage("Vehicle with id " + vehicle.getVehicle_id() + " is not found");
+            crudResponse.setMessage("Vehicle with id " + vehicle.getVehicleId() + " is not found");
             crudResponse.setStatus(false);
         }
         return crudResponse;
     }
 
-    public CrudResponse deleteVehicleById(String vehicleId) {
+    public CrudResponse deleteVehicleById(Integer vehicleId) {
         CrudResponse crudResponse = new CrudResponse();
         Optional<Vehicle> vehicle = vehicleRepository.findById(vehicleId);
         if (vehicle.isPresent()) {

@@ -8,6 +8,8 @@ import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.Table;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+
 @Table
 @Component
 @Data
@@ -15,17 +17,17 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 public class Gps {
 
-    @PrimaryKey
-    private String timeStatus;
+    @PrimaryKey(value = "created_time")
+    private LocalDateTime createdTime;
 
     @Column(value = "vehicle_id")
-    private String vehicleId;
+    private int vehicleId;
 
     @Column(value = "device_id")
-    private String deviceId;
+    private int deviceId;
 
     @Column(value = "company_id")
-    private String companyId;
+    private int companyId;
 
     @Column(value = "latitude")
     private double latitude;

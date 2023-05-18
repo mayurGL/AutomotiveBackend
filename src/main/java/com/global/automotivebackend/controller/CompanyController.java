@@ -1,13 +1,12 @@
 package com.global.automotivebackend.controller;
 
-
 import com.global.automotivebackend.dto.CrudResponse;
 import com.global.automotivebackend.model.Company;
 import com.global.automotivebackend.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -25,17 +24,16 @@ public class CompanyController {
 
     @PostMapping("/add")
     public CrudResponse addCompany(@RequestBody Company company) {
-        return companyService.addCompany(company, Instant.now().toString());
+        return companyService.addCompany(company, LocalDateTime.now());
     }
 
     @PutMapping("/update")
     public CrudResponse updateCompany(@RequestBody Company company) {
-        return companyService.updateCompany(company, Instant.now().toString());
+        return companyService.updateCompany(company, LocalDateTime.now());
     }
 
-    @DeleteMapping("/delete/{companyid}")
-    public CrudResponse deleteCompany(@PathVariable String companyid) {
-        return companyService.deleteCompanyById(companyid);
+    @DeleteMapping("/delete/{companyId}")
+    public CrudResponse deleteCompany(@PathVariable int companyId) {
+        return companyService.deleteCompanyById(companyId);
     }
-
 }
