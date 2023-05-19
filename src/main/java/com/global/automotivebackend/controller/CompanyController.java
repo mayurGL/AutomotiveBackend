@@ -2,6 +2,7 @@ package com.global.automotivebackend.controller;
 
 import com.global.automotivebackend.dto.CrudResponse;
 import com.global.automotivebackend.model.Company;
+import com.global.automotivebackend.model.CompanyHistorical;
 import com.global.automotivebackend.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,16 @@ public class CompanyController {
     @GetMapping("/all")
     public List<Company> getAllCompanies() {
         return companyService.getAllCompanies();
+    }
+
+    @GetMapping("/get/{id}")
+    public Company getCompany(@PathVariable int id) {
+        return companyService.getCompany(id);
+    }
+
+    @GetMapping("/historical")
+    public List<CompanyHistorical> getCompany() {
+        return companyService.getCompanyHistorical();
     }
 
     @PostMapping("/add")

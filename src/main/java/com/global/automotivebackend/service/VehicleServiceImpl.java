@@ -25,6 +25,14 @@ public class VehicleServiceImpl implements VehicleService {
         return vehicleRepository.findAll();
     }
 
+    public Vehicle getVehicle(Integer id) {
+        return vehicleRepository.findById(id).get();
+    }
+
+    public List<VehicleHistorical> getVehicleHistorical() {
+        return vehicleHistoricalRepository.findAll();
+    }
+
     public CrudResponse addVehicle(Vehicle vehicle, LocalDateTime timestamp) {
         CrudResponse crudResponse = new CrudResponse();
         Vehicle vehicleToBeSaved = new Vehicle(vehicle.getVehicleId(), vehicle.getCompanyId(), vehicle.getMake(), vehicle.getModel(), vehicle.getYear(), timestamp, timestamp, vehicle.getCreatedBy(), vehicle.getModifiedBy());
