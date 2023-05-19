@@ -2,6 +2,7 @@ package com.global.automotivebackend.controller;
 
 import com.global.automotivebackend.dto.CrudResponse;
 import com.global.automotivebackend.model.Vehicle;
+import com.global.automotivebackend.model.VehicleHistorical;
 import com.global.automotivebackend.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +19,16 @@ public class VehicleController {
     @GetMapping("/all")
     public List<Vehicle> findAllVehicles() {
         return vehicleService.getAllVehicles();
+    }
+
+    @GetMapping("/get/{id}")
+    public Vehicle findVehicle(@PathVariable Integer id) {
+        return vehicleService.getVehicle(id);
+    }
+
+    @GetMapping("/historical")
+    public List<VehicleHistorical> findVehicleHistorical() {
+        return vehicleService.getVehicleHistorical();
     }
 
     @PostMapping("/add")

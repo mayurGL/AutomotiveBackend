@@ -24,6 +24,14 @@ public class CompanyServiceImpl implements CompanyService {
         return companyRepository.findAll();
     }
 
+    public Company getCompany(Integer id) {
+        return companyRepository.findById(id).get();
+    }
+
+    public List<CompanyHistorical> getCompanyHistorical() {
+        return companyHistoricalRepository.findAll();
+    }
+
     public CrudResponse addCompany(Company company, LocalDateTime timestamp) {
         CrudResponse crudResponse = new CrudResponse();
         Company companyToBeSaved = new Company(company.getCompanyId(), company.getCompanyName(), company.getCompanyAddress(), timestamp, timestamp, company.getCreatedBy(), company.getModifiedBy());

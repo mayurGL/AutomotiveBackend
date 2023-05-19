@@ -1,6 +1,5 @@
 package com.global.automotivebackend.service;
 
-
 import com.global.automotivebackend.dto.CrudResponse;
 import com.global.automotivebackend.model.Device;
 import com.global.automotivebackend.model.DeviceHistorical;
@@ -24,6 +23,14 @@ public class DeviceServiceImpl implements DeviceService {
 
     public List<Device> getAllDevices() {
         return deviceRepository.findAll();
+    }
+
+    public Device getDevice(Integer id) {
+        return deviceRepository.findById(id).get();
+    }
+
+    public List<DeviceHistorical> getDeviceHistorical() {
+        return deviceHistoricalRepository.findAll();
     }
 
     public CrudResponse addDevice(Device device, LocalDateTime timestamp) {
