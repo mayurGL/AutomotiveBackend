@@ -49,6 +49,7 @@ public class KafkaListeners {
     void gpsTopicListener(String data) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
+
         Gps gps = objectMapper.readValue(data, Gps.class);
         gpsRepository.save(gps);
     }

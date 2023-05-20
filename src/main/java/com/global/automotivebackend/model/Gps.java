@@ -4,8 +4,10 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.cassandra.core.cql.PrimaryKeyType;
 import org.springframework.data.cassandra.core.mapping.Column;
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
+import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
 import org.springframework.data.cassandra.core.mapping.Table;
 import org.springframework.stereotype.Component;
 
@@ -18,20 +20,16 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Gps {
 
-    @PrimaryKey(value = "created_time")
-    @NotNull
+    @PrimaryKeyColumn(name="created_time", ordinal = 3, type = PrimaryKeyType.CLUSTERED)
     private LocalDateTime createdTime;
 
-    @Column(value = "vehicle_id")
-    @NotNull
+    @PrimaryKeyColumn(name = "vehicle_id", ordinal = 1, type = PrimaryKeyType.CLUSTERED)
     private int vehicleId;
 
-    @Column(value = "device_id")
-    @NotNull
+    @PrimaryKeyColumn(name = "device_id", ordinal = 2, type = PrimaryKeyType.CLUSTERED)
     private int deviceId;
 
-    @Column(value = "company_id")
-    @NotNull
+    @PrimaryKeyColumn(name = "company_id", ordinal = 0, type = PrimaryKeyType.PARTITIONED)
     private int companyId;
 
     @Column(value = "latitude")

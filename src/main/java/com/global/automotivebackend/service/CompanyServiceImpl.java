@@ -20,6 +20,12 @@ public class CompanyServiceImpl implements CompanyService {
     @Autowired
     private CompanyHistoricalRepository companyHistoricalRepository;
 
+
+    public CompanyServiceImpl(CompanyRepository companyRepository, CompanyHistoricalRepository companyHistoricalRepository) {
+        this.companyRepository = companyRepository;
+        this.companyHistoricalRepository=companyHistoricalRepository;
+    }
+
     public List<Company> getAllCompanies() {
         return companyRepository.findAll();
     }
