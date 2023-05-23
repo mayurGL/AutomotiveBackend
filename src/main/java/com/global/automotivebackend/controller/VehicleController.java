@@ -4,6 +4,7 @@ import com.global.automotivebackend.dto.CrudResponse;
 import com.global.automotivebackend.model.Vehicle;
 import com.global.automotivebackend.model.VehicleHistorical;
 import com.global.automotivebackend.service.VehicleService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,12 +33,12 @@ public class VehicleController {
     }
 
     @PostMapping("/add")
-    public CrudResponse addVehicle(@RequestBody Vehicle vehicle) {
+    public CrudResponse addVehicle(@Valid @RequestBody Vehicle vehicle) {
         return vehicleService.addVehicle(vehicle, LocalDateTime.now());
     }
 
     @PutMapping("/update")
-    public CrudResponse updateVehicle(@RequestBody Vehicle vehicle) {
+    public CrudResponse updateVehicle(@Valid @RequestBody Vehicle vehicle) {
         return vehicleService.updateVehicle(vehicle, LocalDateTime.now());
     }
 

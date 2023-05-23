@@ -19,27 +19,34 @@ import java.util.UUID;
 public class DeviceHistorical {
     @PrimaryKey
     private UUID id;
+
     @Column(value = "device_id")
-    @NotNull
-    private int deviceId;
+    @NotNull(message = "Enter a valid device ID!!")
+    private Integer deviceId;
+
     @Column(value = "device_type")
-    @NotNull
-    @NotBlank
+    @NotNull(message = "Enter a device type!!")
+    @NotBlank(message = "Enter a device type!!")
     private String deviceType;
+
     @Column(value = "device_name")
-    @NotNull
-    @NotBlank
+    @NotNull(message = "Enter the device name!!")
+    @NotBlank(message = "Enter the device name!!")
     private String deviceName;
+
     @Column(value = "created_time")
     private LocalDateTime createdTime;
+
     @Column(value = "modified_time")
     private LocalDateTime modifiedTime;
+
     @Column(value = "created_by")
-    @NotNull
-    @NotBlank
+    @NotNull(message = "Enter username!!")
+    @NotBlank(message = "Enter username!!")
     private String createdBy;
+
     @Column(value = "modified_by")
-    @NotNull
-    @NotBlank
+    @NotNull(message = "Enter username!!")
+    @NotBlank(message = "Enter username!!")
     private String modifiedBy;
 }

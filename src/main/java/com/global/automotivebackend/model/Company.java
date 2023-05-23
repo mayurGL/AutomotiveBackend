@@ -19,23 +19,32 @@ import java.time.LocalDateTime;
 public class Company {
 
     @PrimaryKey(value = "company_id")
-    private int companyId;
+    @NotNull(message = "Enter a valid company ID!!")
+    private Integer companyId;
+
     @Column(value = "company_name")
-    @NotNull
-    @NotBlank
+    @NotNull(message = "Enter a company name!!")
+    @NotBlank(message = "Enter a valid company name!!")
     private String companyName;
+
     @Column(value = "company_address")
-    @NotNull
-    @NotBlank
+    @NotNull(message = "Enter the company address!!")
+    @NotBlank(message = "Enter a valid address!!")
     private String companyAddress;
+
     @Column(value = "created_time")
     private LocalDateTime createdTime;
+
     @Column(value = "modified_time")
     private LocalDateTime modifiedTime;
+
     @Column(value = "created_by")
-    @NotNull
+    @NotNull(message = "Enter username!!")
+    @NotBlank(message = "Enter username!!")
     private String createdBy;
+
     @Column(value = "modified_by")
-    @NotNull
+    @NotNull(message = "Enter username!!")
+    @NotBlank(message = "Enter username!!")
     private String modifiedBy;
 }

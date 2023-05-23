@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.global.automotivebackend.model.*;
 import com.global.automotivebackend.repository.*;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
@@ -46,10 +47,9 @@ public class KafkaListeners {
     }
 
     @KafkaListener(topics = "gpsTopic", groupId = "groupId")
-    void gpsTopicListener(String data) throws JsonProcessingException {
+    void gpsTopicListener(String data /*@Valid Gps gps*/) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
-
         Gps gps = objectMapper.readValue(data, Gps.class);
         gpsRepository.save(gps);
     }
