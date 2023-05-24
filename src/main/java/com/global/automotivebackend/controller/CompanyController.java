@@ -4,6 +4,7 @@ import com.global.automotivebackend.dto.CrudResponse;
 import com.global.automotivebackend.model.Company;
 import com.global.automotivebackend.model.CompanyHistorical;
 import com.global.automotivebackend.service.CompanyService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,12 +35,12 @@ public class CompanyController {
     }
 
     @PostMapping("/add")
-    public CrudResponse addCompany(@RequestBody Company company) {
+    public CrudResponse addCompany(@Valid @RequestBody Company company) {
         return companyService.addCompany(company, LocalDateTime.now());
     }
 
     @PutMapping("/update")
-    public CrudResponse updateCompany(@RequestBody Company company) {
+    public CrudResponse updateCompany(@Valid @RequestBody Company company) {
         return companyService.updateCompany(company, LocalDateTime.now());
     }
 

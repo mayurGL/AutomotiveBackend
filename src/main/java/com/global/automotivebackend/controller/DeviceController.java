@@ -3,8 +3,8 @@ package com.global.automotivebackend.controller;
 import com.global.automotivebackend.dto.CrudResponse;
 import com.global.automotivebackend.model.Device;
 import com.global.automotivebackend.model.DeviceHistorical;
-import com.global.automotivebackend.model.VehicleHistorical;
 import com.global.automotivebackend.service.DeviceService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,12 +34,12 @@ public class DeviceController {
     }
 
     @PostMapping("/add")
-    public CrudResponse addDevice(@RequestBody Device device) {
+    public CrudResponse addDevice(@Valid @RequestBody Device device) {
         return deviceService.addDevice(device, LocalDateTime.now());
     }
 
     @PutMapping("/update")
-    public CrudResponse updateDevice(@RequestBody Device device) {
+    public CrudResponse updateDevice(@Valid @RequestBody Device device) {
         System.out.println(device);
         return deviceService.updateDevice(device, LocalDateTime.now());
     }

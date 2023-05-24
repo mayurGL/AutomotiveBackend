@@ -20,28 +20,40 @@ import java.time.LocalDateTime;
 public class Vehicle {
 
     @PrimaryKey(value = "vehicle_id")
-    private int vehicleId;
+    @NotNull(message = "Enter a valid vehicle ID!!")
+    private Integer vehicleId;
+
     @Column(value = "company_id")
-    @NotNull
-    private int companyId;
-    @NotNull
-    @NotBlank
+    @NotNull(message = "Enter a valid company ID!!")
+    private Integer companyId;
+
+    @Column(value = "make")
+    @NotNull(message = "Enter the make of the vehicle!!")
+    @NotBlank(message = "Enter the make of the vehicle!!")
     private String make;
-    @NotNull
-    @NotBlank
+
+    @Column(value = "model")
+    @NotNull(message = "Enter the model of the vehicle!!")
+    @NotBlank(message = "Enter the model of the vehicle!!")
     private String model;
-    @NotNull
-    private int year;
+
+    @Column(value = "year")
+    @NotNull(message = "Enter a year of manufacturing!!")
+    private Integer year;
+
     @Column(value = "created_time")
     private LocalDateTime createdTime;
+
     @Column(value = "modified_time")
     private LocalDateTime modifiedTime;
+
     @Column(value = "created_by")
-    @NotNull
-    @NotBlank
+    @NotNull(message = "Enter username!!")
+    @NotBlank(message = "Enter username!!")
     private String createdBy;
+
     @Column(value = "modified_by")
-    @NotNull
-    @NotBlank
+    @NotNull(message = "Enter username!!")
+    @NotBlank(message = "Enter username!!")
     private String modifiedBy;
 }
