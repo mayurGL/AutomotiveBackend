@@ -39,12 +39,8 @@ public class Company {
     private LocalDateTime modifiedTime;
 
     @Column(value = "created_by")
-    @NotNull(message = "Enter username!!")
-    @NotBlank(message = "Enter username!!")
     private String createdBy;
 
     @Column(value = "modified_by")
-    @NotNull(message = "Enter username!!")
-    @NotBlank(message = "Enter username!!")
     private String modifiedBy;
 }

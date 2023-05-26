@@ -1,24 +1,19 @@
 package com.global.automotivebackend.service;
 
-import com.global.automotivebackend.dto.CrudResponse;
+import com.global.automotivebackend.dto.GenericResponse;
 import com.global.automotivebackend.model.Company;
-import com.global.automotivebackend.model.CompanyHistorical;
 import com.global.automotivebackend.repository.CompanyHistoricalRepository;
 import com.global.automotivebackend.repository.CompanyRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.mockito.junit.jupiter.MockitoSettings;
-import org.mockito.quality.Strictness;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDateTime;
 import java.util.NoSuchElementException;
 import java.util.Optional;
-import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -94,7 +89,7 @@ class CompanyServiceTest {
     void testAddCompany() {
 
         Company company =  new Company(7, "Meta", "California", null, null, "Mayur", "Mayur");
-        CrudResponse testCase1 = new CrudResponse();
+        GenericResponse testCase1 = new GenericResponse();
         testCase1.setMessage("Company with " + company.getCompanyId() + " is added");
         testCase1.setStatus(true);
 
@@ -114,7 +109,7 @@ class CompanyServiceTest {
         when(companyRepository.findById(companyId)).thenReturn(Optional.of(company));
 
 
-        CrudResponse response = companyService.deleteCompanyById(companyId);
+        GenericResponse response = companyService.deleteCompanyById(companyId);
 
 
         assertTrue(response.isStatus());
@@ -131,7 +126,7 @@ class CompanyServiceTest {
         when(companyRepository.findById(companyId)).thenReturn(Optional.empty());
 
 
-        CrudResponse response = companyService.deleteCompanyById(companyId);
+        GenericResponse response = companyService.deleteCompanyById(companyId);
 
 
         assertFalse(response.isStatus());
@@ -149,13 +144,13 @@ class CompanyServiceTest {
         LocalDateTime modifiedTime = LocalDateTime.now();
         Company existingCompany = new Company(4, "TCS", "Hyderabad", LocalDateTime.now(), LocalDateTime.now(), "Mayur", "Mayur");
         Company updatedCompany = new Company(companyId, "Tata Steel", "Mumbai", existingCompany.getCreatedTime(), modifiedTime, existingCompany.getCreatedBy(), "Rahul");
-        CrudResponse expectedResponse = new CrudResponse("Company with " + companyId + " is updated", true);
+        GenericResponse expectedResponse = new GenericResponse("Company with " + companyId + " is updated", true);
 
         when(companyRepository.findById(companyId)).thenReturn(Optional.of(existingCompany));
         when(companyRepository.save(updatedCompany)).thenReturn(updatedCompany);
 
 
-        CrudResponse response = companyService.updateCompany(updatedCompany, modifiedTime);
+        GenericResponse response = companyService.updateCompany(updatedCompany, modifiedTime);
 
 
         assertEquals(expectedResponse, response);
@@ -169,12 +164,12 @@ class CompanyServiceTest {
         Integer companyId = 19;
         LocalDateTime modifiedTime = LocalDateTime.now();
         Company updatedCompany = new Company(companyId, "Updated Company", "Updated Address", LocalDateTime.now(), modifiedTime, "createdBy", "modifiedBy");
-        CrudResponse expectedResponse = new CrudResponse( "Company with " + companyId + " is not found", false);
+        GenericResponse expectedResponse = new GenericResponse( "Company with " + companyId + " is not found", false);
 
         when(companyRepository.findById(companyId)).thenReturn(Optional.empty());
 
 
-        CrudResponse response = companyService.updateCompany(updatedCompany, modifiedTime);
+        GenericResponse response = companyService.updateCompany(updatedCompany, modifiedTime);
 
 
         assertEquals(expectedResponse, response);

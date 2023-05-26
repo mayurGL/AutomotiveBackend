@@ -1,6 +1,6 @@
 package com.global.automotivebackend.service;
 
-import com.global.automotivebackend.dto.CrudResponse;
+import com.global.automotivebackend.dto.GenericResponse;
 import com.global.automotivebackend.model.Company;
 import com.global.automotivebackend.model.CompanyHistorical;
 import org.springframework.stereotype.Service;
@@ -16,9 +16,9 @@ public interface CompanyService {
 
     public List<CompanyHistorical> getCompanyHistorical();
 
-    public CrudResponse addCompany(Company company, LocalDateTime timestamp);
+    public GenericResponse addCompany(Company company, LocalDateTime timestamp);
 
-    public CrudResponse deleteCompanyById(Integer companyId);
+    public GenericResponse deleteCompanyById(Integer companyId);
 
-    public CrudResponse updateCompany(Company company, LocalDateTime modifiedTime);
+    public GenericResponse updateCompany(Company company, LocalDateTime modifiedTime);
 }

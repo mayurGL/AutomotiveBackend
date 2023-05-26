@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CrudResponse {
+public class GenericResponse {
     private String message;
     private boolean status;
 }

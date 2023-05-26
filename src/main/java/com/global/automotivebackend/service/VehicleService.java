@@ -1,6 +1,6 @@
 package com.global.automotivebackend.service;
 
-import com.global.automotivebackend.dto.CrudResponse;
+import com.global.automotivebackend.dto.GenericResponse;
 import com.global.automotivebackend.model.Vehicle;
 import com.global.automotivebackend.model.VehicleHistorical;
 import org.springframework.stereotype.Service;
@@ -16,10 +16,10 @@ public interface VehicleService {
 
     public List<VehicleHistorical> getVehicleHistorical();
 
-    public CrudResponse addVehicle(Vehicle vehicle, LocalDateTime timestamp);
+    public GenericResponse addVehicle(Vehicle vehicle, LocalDateTime timestamp);
 
-    public CrudResponse updateVehicle(Vehicle vehicle, LocalDateTime modifiedTime);
+    public GenericResponse updateVehicle(Vehicle vehicle, LocalDateTime modifiedTime);
 
-    public CrudResponse deleteVehicleById(Integer vehicleId);
+    public GenericResponse deleteVehicleById(Integer vehicleId);
 
 }

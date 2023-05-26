@@ -1,6 +1,6 @@
 package com.global.automotivebackend.controller;
 
-import com.global.automotivebackend.dto.CrudResponse;
+import com.global.automotivebackend.dto.GenericResponse;
 import com.global.automotivebackend.model.Company;
 import com.global.automotivebackend.model.CompanyHistorical;
 import com.global.automotivebackend.service.CompanyService;
@@ -34,18 +34,5 @@ public class CompanyController {
         return companyService.getCompanyHistorical();
     }
 
-    @PostMapping("/add")
-    public CrudResponse addCompany(@Valid @RequestBody Company company) {
-        return companyService.addCompany(company, LocalDateTime.now());
-    }
 
-    @PutMapping("/update")
-    public CrudResponse updateCompany(@Valid @RequestBody Company company) {
-        return companyService.updateCompany(company, LocalDateTime.now());
-    }
-
-    @DeleteMapping("/delete/{companyId}")
-    public CrudResponse deleteCompany(@PathVariable int companyId) {
-        return companyService.deleteCompanyById(companyId);
-    }
 }

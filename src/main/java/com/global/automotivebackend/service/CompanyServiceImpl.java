@@ -1,6 +1,6 @@
 package com.global.automotivebackend.service;
 
-import com.global.automotivebackend.dto.CrudResponse;
+import com.global.automotivebackend.dto.GenericResponse;
 import com.global.automotivebackend.model.Company;
 import com.global.automotivebackend.model.CompanyHistorical;
 import com.global.automotivebackend.repository.CompanyHistoricalRepository;
@@ -38,8 +38,8 @@ public class CompanyServiceImpl implements CompanyService {
         return companyHistoricalRepository.findAll();
     }
 
-    public CrudResponse addCompany(Company company, LocalDateTime timestamp) {
-        CrudResponse crudResponse = new CrudResponse();
+    public GenericResponse addCompany(Company company, LocalDateTime timestamp) {
+        GenericResponse crudResponse = new GenericResponse();
         Company companyToBeSaved = new Company(company.getCompanyId(), company.getCompanyName(), company.getCompanyAddress(), timestamp, timestamp, company.getCreatedBy(), company.getModifiedBy());
         CompanyHistorical companyHistorical = new CompanyHistorical(UUID.randomUUID(), company.getCompanyId(), company.getCompanyName(), company.getCompanyAddress(), timestamp, timestamp, company.getCreatedBy(), company.getModifiedBy());
         companyRepository.save(companyToBeSaved);
@@ -49,8 +49,8 @@ public class CompanyServiceImpl implements CompanyService {
         return crudResponse;
     }
 
-    public CrudResponse deleteCompanyById(Integer companyId) {
-        CrudResponse crudResponse = new CrudResponse();
+    public GenericResponse deleteCompanyById(Integer companyId) {
+        GenericResponse crudResponse = new GenericResponse();
         Optional<Company> company = companyRepository.findById(companyId);
         if (company.isPresent()) {
             System.out.println(company.get());
@@ -64,8 +64,8 @@ public class CompanyServiceImpl implements CompanyService {
         return crudResponse;
     }
 
-    public CrudResponse updateCompany(Company company, LocalDateTime modifiedTime) {
-        CrudResponse crudResponse = new CrudResponse();
+    public GenericResponse updateCompany(Company company, LocalDateTime modifiedTime) {
+        GenericResponse crudResponse = new GenericResponse();
         Optional<Company> searchedCompany = companyRepository.findById(company.getCompanyId());
         if (searchedCompany.isPresent()) {
             Company companyToBeUpdated = new Company(company.getCompanyId(), company.getCompanyName(), company.getCompanyAddress(), searchedCompany.get().getCreatedTime(), modifiedTime, searchedCompany.get().getCreatedBy(), company.getModifiedBy());

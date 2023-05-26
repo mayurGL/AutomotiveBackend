@@ -1,6 +1,7 @@
 package com.global.automotivebackend.service;
 
-import com.global.automotivebackend.dto.CrudResponse;
+import com.global.automotivebackend.dto.GenericResponse;
+import com.global.automotivebackend.dto.LoginUserRequest;
 import com.global.automotivebackend.model.User;
 import com.global.automotivebackend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +14,17 @@ public class UserServiceImpl implements UserService {
     UserRepository userRepository;
 
     @Override
-    public CrudResponse register(User user) {
+    public GenericResponse register(User user) {
         userRepository.save(user);
-        return null;
+        return new GenericResponse("User registered successfully",true);
     }
+
+    @Override
+    public User validateUser(LoginUserRequest loginUserRequest) {
+
+       return userRepository.findByUsernameAndPassword(loginUserRequest.getUsername(), loginUserRequest.getPassword());
+
+    }
+
+
 }

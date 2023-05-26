@@ -17,16 +17,13 @@ import org.springframework.data.cassandra.core.mapping.Table;
 @AllArgsConstructor
 public class User {
 
-    @PrimaryKey(value = "user_id")
-    @NotNull(message = "Enter a valid user ID!!")
-    private Integer userId;
 
-    @Column(value = "username")
+    @PrimaryKey(value = "username")
     @NotNull(message = "Enter the username!!")
     @NotBlank(message = "Enter a valid username!!")
     private String username;
 
-    @Column(value = "company_address")
+
     @NotNull(message = "User email is mandatory!!")
     @NotBlank(message = "Enter a valid email id!")
     @Email(message = "Enter a valid email id")

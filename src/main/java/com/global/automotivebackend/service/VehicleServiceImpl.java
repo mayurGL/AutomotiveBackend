@@ -1,6 +1,6 @@
 package com.global.automotivebackend.service;
 
-import com.global.automotivebackend.dto.CrudResponse;
+import com.global.automotivebackend.dto.GenericResponse;
 import com.global.automotivebackend.model.Vehicle;
 import com.global.automotivebackend.model.VehicleHistorical;
 import com.global.automotivebackend.repository.VehicleHistoricalRepository;
@@ -33,8 +33,8 @@ public class VehicleServiceImpl implements VehicleService {
         return vehicleHistoricalRepository.findAll();
     }
 
-    public CrudResponse addVehicle(Vehicle vehicle, LocalDateTime timestamp) {
-        CrudResponse crudResponse = new CrudResponse();
+    public GenericResponse addVehicle(Vehicle vehicle, LocalDateTime timestamp) {
+        GenericResponse crudResponse = new GenericResponse();
         Vehicle vehicleToBeSaved = new Vehicle(vehicle.getVehicleId(), vehicle.getCompanyId(), vehicle.getMake(), vehicle.getModel(), vehicle.getYear(), timestamp, timestamp, vehicle.getCreatedBy(), vehicle.getModifiedBy());
         VehicleHistorical vehicleHistorical = new VehicleHistorical(UUID.randomUUID(), vehicle.getVehicleId(), vehicle.getCompanyId(), vehicle.getMake(), vehicle.getModel(), vehicle.getYear(), timestamp, timestamp, vehicle.getCreatedBy(), vehicle.getModifiedBy());
         vehicleRepository.save(vehicleToBeSaved);
@@ -44,9 +44,9 @@ public class VehicleServiceImpl implements VehicleService {
         return crudResponse;
     }
 
-    public CrudResponse updateVehicle(Vehicle vehicle, LocalDateTime modifiedTime) {
+    public GenericResponse updateVehicle(Vehicle vehicle, LocalDateTime modifiedTime) {
 
-        CrudResponse crudResponse = new CrudResponse();
+        GenericResponse crudResponse = new GenericResponse();
         Optional<Vehicle> searchedVehicles = vehicleRepository.findById(vehicle.getVehicleId());
         if (searchedVehicles.isPresent()) {
             Vehicle foundVehicle = searchedVehicles.get();
@@ -63,8 +63,8 @@ public class VehicleServiceImpl implements VehicleService {
         return crudResponse;
     }
 
-    public CrudResponse deleteVehicleById(Integer vehicleId) {
-        CrudResponse crudResponse = new CrudResponse();
+    public GenericResponse deleteVehicleById(Integer vehicleId) {
+        GenericResponse crudResponse = new GenericResponse();
         Optional<Vehicle> vehicle = vehicleRepository.findById(vehicleId);
         if (vehicle.isPresent()) {
             vehicleRepository.deleteById(vehicleId);

@@ -1,6 +1,6 @@
 package com.global.automotivebackend.service;
 
-import com.global.automotivebackend.dto.CrudResponse;
+import com.global.automotivebackend.dto.GenericResponse;
 import com.global.automotivebackend.model.Device;
 import com.global.automotivebackend.model.DeviceHistorical;
 import org.springframework.stereotype.Service;
@@ -16,9 +16,9 @@ public interface DeviceService {
 
     public List<DeviceHistorical> getDeviceHistorical();
 
-    public CrudResponse addDevice(Device device, LocalDateTime timestamp);
+    public GenericResponse addDevice(Device device, LocalDateTime timestamp);
 
-    public CrudResponse updateDevice(Device device, LocalDateTime modifiedTime);
+    public GenericResponse updateDevice(Device device, LocalDateTime modifiedTime);
 
-    public CrudResponse deleteDeviceById(Integer deviceId);
+    public GenericResponse deleteDeviceById(Integer deviceId);
 }

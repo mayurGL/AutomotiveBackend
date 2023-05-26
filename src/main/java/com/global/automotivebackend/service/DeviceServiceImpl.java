@@ -1,6 +1,6 @@
 package com.global.automotivebackend.service;
 
-import com.global.automotivebackend.dto.CrudResponse;
+import com.global.automotivebackend.dto.GenericResponse;
 import com.global.automotivebackend.model.Device;
 import com.global.automotivebackend.model.DeviceHistorical;
 import com.global.automotivebackend.repository.DeviceHistoricalRepository;
@@ -33,8 +33,8 @@ public class DeviceServiceImpl implements DeviceService {
         return deviceHistoricalRepository.findAll();
     }
 
-    public CrudResponse addDevice(Device device, LocalDateTime timestamp) {
-        CrudResponse crudResponse = new CrudResponse();
+    public GenericResponse addDevice(Device device, LocalDateTime timestamp) {
+        GenericResponse crudResponse = new GenericResponse();
         Device deviceToBeSaved = new Device(device.getDeviceId(), device.getDeviceType(), device.getDeviceName(), timestamp, timestamp, device.getCreatedBy(), device.getModifiedBy());
         DeviceHistorical deviceHistorical = new DeviceHistorical(UUID.randomUUID(), device.getDeviceId(), device.getDeviceType(), device.getDeviceName(), timestamp, timestamp, device.getCreatedBy(), device.getModifiedBy());
         deviceRepository.save(deviceToBeSaved);
@@ -44,9 +44,9 @@ public class DeviceServiceImpl implements DeviceService {
         return crudResponse;
     }
 
-    public CrudResponse updateDevice(Device device, LocalDateTime modifiedTime) {
+    public GenericResponse updateDevice(Device device, LocalDateTime modifiedTime) {
 
-        CrudResponse crudResponse = new CrudResponse();
+        GenericResponse crudResponse = new GenericResponse();
         System.out.println(device.getDeviceId());
         Optional<Device> searchedDevice = deviceRepository.findById(device.getDeviceId());
         if (searchedDevice.isPresent()) {
@@ -64,8 +64,8 @@ public class DeviceServiceImpl implements DeviceService {
         return crudResponse;
     }
 
-    public CrudResponse deleteDeviceById(Integer deviceId) {
-        CrudResponse crudResponse = new CrudResponse();
+    public GenericResponse deleteDeviceById(Integer deviceId) {
+        GenericResponse crudResponse = new GenericResponse();
         Optional<Device> device = deviceRepository.findById(deviceId);
         if (device.isPresent()) {
             deviceRepository.deleteById(deviceId);
