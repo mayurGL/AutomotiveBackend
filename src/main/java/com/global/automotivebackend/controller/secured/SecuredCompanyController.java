@@ -23,47 +23,33 @@ public class SecuredCompanyController {
 
     @PostMapping("/add")
     public ResponseEntity<GenericResponse> addCompany(@Valid @RequestBody Company company, HttpServletRequest request) {
-
         String token = CookieToJwtConverter.getTokenFromCookie(request);
-
         if(token == null || JwtUtil.validateToken(token)==null){
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new GenericResponse("Unauthorized access please login",false));
         }
-
         User user = JwtUtil.validateToken(token);
-
         company.setCreatedBy(user.getUsername());
         company.setModifiedBy(user.getUsername());
-
-
         return ResponseEntity.ok(companyService.addCompany(company, LocalDateTime.now()));
     }
 
     @PutMapping("/update")
     public ResponseEntity<GenericResponse> updateCompany(@Valid @RequestBody Company company, HttpServletRequest request) {
-
         String token = CookieToJwtConverter.getTokenFromCookie(request);
-
         if(token == null || JwtUtil.validateToken(token)==null){
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new GenericResponse("Unauthorized access please login",false));
         }
-
         User user = JwtUtil.validateToken(token);
-
         company.setModifiedBy(user.getUsername());
-
         return ResponseEntity.ok(companyService.updateCompany(company, LocalDateTime.now()));
     }
 
     @DeleteMapping("/delete/{companyId}")
     public ResponseEntity<GenericResponse> deleteCompany(@PathVariable int companyId, HttpServletRequest request) {
-
         String token = CookieToJwtConverter.getTokenFromCookie(request);
-
         if(token == null || JwtUtil.validateToken(token)==null){
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new GenericResponse("Unauthorized access please login",false));
         }
-
         return ResponseEntity.ok(companyService.deleteCompanyById(companyId));
     }
 }

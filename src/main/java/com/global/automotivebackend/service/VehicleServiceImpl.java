@@ -1,5 +1,7 @@
 package com.global.automotivebackend.service;
 
+import com.global.automotivebackend.advice.IdAlreadyExistsException;
+import com.global.automotivebackend.advice.IdNotFoundException;
 import com.global.automotivebackend.dto.GenericResponse;
 import com.global.automotivebackend.model.Vehicle;
 import com.global.automotivebackend.model.VehicleHistorical;
@@ -26,7 +28,11 @@ public class VehicleServiceImpl implements VehicleService {
     }
 
     public Vehicle getVehicle(Integer id) {
-        return vehicleRepository.findById(id).get();
+        if (vehicleRepository.findById(id).isEmpty()){
+            throw new IdNotFoundException("Vehicle with this ID doesn't exist!!");
+        }else {
+            return vehicleRepository.findById(id).get();
+        }
     }
 
     public List<VehicleHistorical> getVehicleHistorical() {
@@ -37,15 +43,18 @@ public class VehicleServiceImpl implements VehicleService {
         GenericResponse crudResponse = new GenericResponse();
         Vehicle vehicleToBeSaved = new Vehicle(vehicle.getVehicleId(), vehicle.getCompanyId(), vehicle.getMake(), vehicle.getModel(), vehicle.getYear(), timestamp, timestamp, vehicle.getCreatedBy(), vehicle.getModifiedBy());
         VehicleHistorical vehicleHistorical = new VehicleHistorical(UUID.randomUUID(), vehicle.getVehicleId(), vehicle.getCompanyId(), vehicle.getMake(), vehicle.getModel(), vehicle.getYear(), timestamp, timestamp, vehicle.getCreatedBy(), vehicle.getModifiedBy());
-        vehicleRepository.save(vehicleToBeSaved);
-        vehicleHistoricalRepository.save(vehicleHistorical);
-        crudResponse.setMessage("Vehicle with " + vehicle.getVehicleId() + " is added");
-        crudResponse.setStatus(true);
-        return crudResponse;
+        if (vehicleRepository.findById(vehicleToBeSaved.getVehicleId()).isPresent()){
+            throw new IdAlreadyExistsException("Vehicle with this ID already exists!!");
+        }else {
+            vehicleRepository.save(vehicleToBeSaved);
+            vehicleHistoricalRepository.save(vehicleHistorical);
+            crudResponse.setMessage("Vehicle with " + vehicle.getVehicleId() + " is added");
+            crudResponse.setStatus(true);
+            return crudResponse;
+        }
     }
 
     public GenericResponse updateVehicle(Vehicle vehicle, LocalDateTime modifiedTime) {
-
         GenericResponse crudResponse = new GenericResponse();
         Optional<Vehicle> searchedVehicles = vehicleRepository.findById(vehicle.getVehicleId());
         if (searchedVehicles.isPresent()) {
@@ -57,8 +66,7 @@ public class VehicleServiceImpl implements VehicleService {
             crudResponse.setMessage("Vehicle with id " + vehicle.getVehicleId() + " is updated");
             crudResponse.setStatus(true);
         } else {
-            crudResponse.setMessage("Vehicle with id " + vehicle.getVehicleId() + " is not found");
-            crudResponse.setStatus(false);
+            throw new IdNotFoundException("Vehicle with this ID doesn't exist!!");
         }
         return crudResponse;
     }
@@ -71,8 +79,7 @@ public class VehicleServiceImpl implements VehicleService {
             crudResponse.setMessage("Vehicle with id " + vehicleId + " is deleted");
             crudResponse.setStatus(true);
         } else {
-            crudResponse.setMessage("Vehicle with id " + vehicleId + " is not found");
-            crudResponse.setStatus(false);
+            throw new IdNotFoundException("Vehicle with this ID doesn't exists");
         }
         return crudResponse;
     }
