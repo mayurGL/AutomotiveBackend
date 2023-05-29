@@ -1,5 +1,6 @@
 package com.global.automotivebackend.service;
 
+import com.global.automotivebackend.advice.UserAlreadyExistsException;
 import com.global.automotivebackend.dto.GenericResponse;
 import com.global.automotivebackend.dto.LoginUserRequest;
 import com.global.automotivebackend.model.User;
@@ -15,16 +16,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public GenericResponse register(User user) {
-        userRepository.save(user);
+        if (userRepository.findById(user.getUsername()).isEmpty()){
+            throw new UserAlreadyExistsException("User with this username already exists!!");
+        }else {
+            userRepository.save(user);
+        }
         return new GenericResponse("User registered successfully",true);
     }
 
     @Override
     public User validateUser(LoginUserRequest loginUserRequest) {
-
        return userRepository.findByUsernameAndPassword(loginUserRequest.getUsername(), loginUserRequest.getPassword());
-
     }
-
-
 }

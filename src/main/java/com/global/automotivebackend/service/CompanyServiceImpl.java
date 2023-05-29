@@ -1,5 +1,7 @@
 package com.global.automotivebackend.service;
 
+import com.global.automotivebackend.advice.IdAlreadyExistsException;
+import com.global.automotivebackend.advice.IdNotFoundException;
 import com.global.automotivebackend.dto.GenericResponse;
 import com.global.automotivebackend.model.Company;
 import com.global.automotivebackend.model.CompanyHistorical;
@@ -23,7 +25,7 @@ public class CompanyServiceImpl implements CompanyService {
 
     public CompanyServiceImpl(CompanyRepository companyRepository, CompanyHistoricalRepository companyHistoricalRepository) {
         this.companyRepository = companyRepository;
-        this.companyHistoricalRepository=companyHistoricalRepository;
+        this.companyHistoricalRepository = companyHistoricalRepository;
     }
 
     public List<Company> getAllCompanies() {
@@ -31,7 +33,11 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     public Company getCompany(Integer id) {
-        return companyRepository.findById(id).get();
+        if (!companyRepository.findById(id).isPresent()){
+            throw new IdNotFoundException("Company ID does not exist!!");
+        } else {
+            return companyRepository.findById(id).get();
+        }
     }
 
     public List<CompanyHistorical> getCompanyHistorical() {
@@ -42,24 +48,26 @@ public class CompanyServiceImpl implements CompanyService {
         GenericResponse crudResponse = new GenericResponse();
         Company companyToBeSaved = new Company(company.getCompanyId(), company.getCompanyName(), company.getCompanyAddress(), timestamp, timestamp, company.getCreatedBy(), company.getModifiedBy());
         CompanyHistorical companyHistorical = new CompanyHistorical(UUID.randomUUID(), company.getCompanyId(), company.getCompanyName(), company.getCompanyAddress(), timestamp, timestamp, company.getCreatedBy(), company.getModifiedBy());
-        companyRepository.save(companyToBeSaved);
-        companyHistoricalRepository.save(companyHistorical);
-        crudResponse.setMessage("Company with " + company.getCompanyId() + " is added");
-        crudResponse.setStatus(true);
-        return crudResponse;
+        if (!companyRepository.findById(companyToBeSaved.getCompanyId()).isPresent()){
+            throw new IdAlreadyExistsException("Company ID already exists!!");
+        } else {
+            companyRepository.save(companyToBeSaved);
+            companyHistoricalRepository.save(companyHistorical);
+            crudResponse.setMessage("Company with " + company.getCompanyId() + " is added");
+            crudResponse.setStatus(true);
+            return crudResponse;
+        }
     }
 
     public GenericResponse deleteCompanyById(Integer companyId) {
         GenericResponse crudResponse = new GenericResponse();
         Optional<Company> company = companyRepository.findById(companyId);
         if (company.isPresent()) {
-            System.out.println(company.get());
             companyRepository.deleteById(companyId);
             crudResponse.setMessage("Company with " + companyId + " is deleted");
             crudResponse.setStatus(true);
         } else {
-            crudResponse.setMessage("Company with " + companyId + " is not found");
-            crudResponse.setStatus(false);
+            throw new IdNotFoundException("Company ID doesn't exist!!");
         }
         return crudResponse;
     }
@@ -75,8 +83,7 @@ public class CompanyServiceImpl implements CompanyService {
             crudResponse.setMessage("Company with " + company.getCompanyId() + " is updated");
             crudResponse.setStatus(true);
         } else {
-            crudResponse.setMessage("Company with " + company.getCompanyId() + " is not found");
-            crudResponse.setStatus(false);
+            throw new IdNotFoundException("Company ID doesn't exist!!");
         }
         return crudResponse;
     }

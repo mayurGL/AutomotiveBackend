@@ -1,5 +1,7 @@
 package com.global.automotivebackend.service;
 
+import com.global.automotivebackend.advice.IdAlreadyExistsException;
+import com.global.automotivebackend.advice.IdNotFoundException;
 import com.global.automotivebackend.dto.GenericResponse;
 import com.global.automotivebackend.model.Device;
 import com.global.automotivebackend.model.DeviceHistorical;
@@ -26,7 +28,11 @@ public class DeviceServiceImpl implements DeviceService {
     }
 
     public Device getDevice(Integer id) {
-        return deviceRepository.findById(id).get();
+        if (deviceRepository.findById(id).isEmpty()){
+            throw new IdNotFoundException("Device with this ID doesn't exist!!");
+        }else {
+            return deviceRepository.findById(id).get();
+        }
     }
 
     public List<DeviceHistorical> getDeviceHistorical() {
@@ -37,15 +43,18 @@ public class DeviceServiceImpl implements DeviceService {
         GenericResponse crudResponse = new GenericResponse();
         Device deviceToBeSaved = new Device(device.getDeviceId(), device.getDeviceType(), device.getDeviceName(), timestamp, timestamp, device.getCreatedBy(), device.getModifiedBy());
         DeviceHistorical deviceHistorical = new DeviceHistorical(UUID.randomUUID(), device.getDeviceId(), device.getDeviceType(), device.getDeviceName(), timestamp, timestamp, device.getCreatedBy(), device.getModifiedBy());
-        deviceRepository.save(deviceToBeSaved);
-        deviceHistoricalRepository.save(deviceHistorical);
-        crudResponse.setMessage("Device with " + device.getDeviceId() + " is added");
-        crudResponse.setStatus(true);
-        return crudResponse;
+        if (deviceRepository.findById(deviceToBeSaved.getDeviceId()).isPresent()){
+            throw new IdAlreadyExistsException("Device with this ID already exists!!");
+        }else{
+            deviceRepository.save(deviceToBeSaved);
+            deviceHistoricalRepository.save(deviceHistorical);
+            crudResponse.setMessage("Device with " + device.getDeviceId() + " is added");
+            crudResponse.setStatus(true);
+            return crudResponse;
+        }
     }
 
     public GenericResponse updateDevice(Device device, LocalDateTime modifiedTime) {
-
         GenericResponse crudResponse = new GenericResponse();
         System.out.println(device.getDeviceId());
         Optional<Device> searchedDevice = deviceRepository.findById(device.getDeviceId());
@@ -58,8 +67,7 @@ public class DeviceServiceImpl implements DeviceService {
             crudResponse.setMessage("Device with id " + device.getDeviceId() + " is updated");
             crudResponse.setStatus(true);
         } else {
-            crudResponse.setMessage("Device with id " + device.getDeviceId() + " is not found");
-            crudResponse.setStatus(false);
+            throw new IdNotFoundException("Device with this ID doesn't exist!!");
         }
         return crudResponse;
     }
@@ -72,8 +80,7 @@ public class DeviceServiceImpl implements DeviceService {
             crudResponse.setMessage("Device with id " + deviceId + " is deleted");
             crudResponse.setStatus(true);
         } else {
-            crudResponse.setMessage("Device with id " + deviceId + " is not found");
-            crudResponse.setStatus(false);
+            throw new IdNotFoundException("Device with this ID doesn't exists");
         }
         return crudResponse;
     }

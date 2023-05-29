@@ -24,8 +24,8 @@ public class GlobalExceptionHandler {
         return errorMap;
     }
 
-    @ExceptionHandler(RegistrationFailedException.class)
-    public ResponseEntity<Object> handleRegistrationFailedException(RegistrationFailedException ex) {
+    @ExceptionHandler(UserAlreadyExistsException.class)
+    public ResponseEntity<Object> handleRegistrationFailedException(UserAlreadyExistsException ex) {
         String message = ex.getMessage();
         List<String> details = new ArrayList<>();
         details.add("Try Again Later");

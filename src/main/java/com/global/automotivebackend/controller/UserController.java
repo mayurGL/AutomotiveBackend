@@ -1,6 +1,7 @@
 package com.global.automotivebackend.controller;
 
 
+import com.global.automotivebackend.advice.AuthenticationFailedException;
 import com.global.automotivebackend.dto.GenericResponse;
 import com.global.automotivebackend.dto.LoginUserRequest;
 import com.global.automotivebackend.model.User;
@@ -33,14 +34,11 @@ public class UserController {
     public ResponseEntity<GenericResponse> login(@RequestBody LoginUserRequest loginUserRequest, HttpServletResponse response){
 
         User userToBeLoggedIn = userService.validateUser(loginUserRequest);
-
-
         if(userToBeLoggedIn==null){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new GenericResponse("Invalid credentails",false));
+            throw new AuthenticationFailedException("ID and password not found!! TRY AGAIN!!");
         }
 
         String token= JwtUtil.generateToken(userToBeLoggedIn);
-
         Cookie cookie = new Cookie("MyJWT", token);
         cookie.setMaxAge(60*60*24*30);
         cookie.setHttpOnly(true);
