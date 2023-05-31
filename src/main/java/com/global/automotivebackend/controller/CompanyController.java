@@ -18,6 +18,10 @@ public class CompanyController {
     @Autowired
     private CompanyService companyService;
 
+    public CompanyController(CompanyService companyService) {
+        this.companyService = companyService;
+    }
+
     @GetMapping("/all")
     public List<Company> getAllCompanies() {
         return companyService.getAllCompanies();

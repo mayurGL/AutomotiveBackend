@@ -18,6 +18,10 @@ public class DeviceController {
     @Autowired
     private DeviceService deviceService;
 
+    public DeviceController(DeviceService deviceService) {
+        this.deviceService = deviceService;
+    }
+
     @GetMapping("/all")
     public List<Device> findAllDevices() {
         return deviceService.getAllDevices();

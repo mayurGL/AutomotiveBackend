@@ -23,15 +23,22 @@ public class VehicleServiceImpl implements VehicleService {
     @Autowired
     private VehicleHistoricalRepository vehicleHistoricalRepository;
 
+
+    public VehicleServiceImpl(VehicleRepository vehicleRepository, VehicleHistoricalRepository vehicleHistoricalRepository) {
+        this.vehicleRepository = vehicleRepository;
+        this.vehicleHistoricalRepository = vehicleHistoricalRepository;
+    }
+
     public List<Vehicle> getAllVehicles() {
         return vehicleRepository.findAll();
     }
 
     public Vehicle getVehicle(Integer id) {
-        if (vehicleRepository.findById(id).isEmpty()){
-            throw new IdNotFoundException("Vehicle with this ID doesn't exist!!");
+        Optional<Vehicle> vehicleToBeFound = vehicleRepository.findById(id);
+        if (vehicleToBeFound.isEmpty()){
+            throw new IdNotFoundException("Vehicle with this ID doesn't exists");
         }else {
-            return vehicleRepository.findById(id).get();
+            return vehicleToBeFound.get();
         }
     }
 
@@ -44,7 +51,7 @@ public class VehicleServiceImpl implements VehicleService {
         Vehicle vehicleToBeSaved = new Vehicle(vehicle.getVehicleId(), vehicle.getCompanyId(), vehicle.getMake(), vehicle.getModel(), vehicle.getYear(), timestamp, timestamp, vehicle.getCreatedBy(), vehicle.getModifiedBy());
         VehicleHistorical vehicleHistorical = new VehicleHistorical(UUID.randomUUID(), vehicle.getVehicleId(), vehicle.getCompanyId(), vehicle.getMake(), vehicle.getModel(), vehicle.getYear(), timestamp, timestamp, vehicle.getCreatedBy(), vehicle.getModifiedBy());
         if (vehicleRepository.findById(vehicleToBeSaved.getVehicleId()).isPresent()){
-            throw new IdAlreadyExistsException("Vehicle with this ID already exists!!");
+            throw new IdAlreadyExistsException("Vehicle with this ID already exists");
         }else {
             vehicleRepository.save(vehicleToBeSaved);
             vehicleHistoricalRepository.save(vehicleHistorical);
@@ -66,7 +73,7 @@ public class VehicleServiceImpl implements VehicleService {
             crudResponse.setMessage("Vehicle with id " + vehicle.getVehicleId() + " is updated");
             crudResponse.setStatus(true);
         } else {
-            throw new IdNotFoundException("Vehicle with this ID doesn't exist!!");
+            throw new IdNotFoundException("Vehicle with this ID doesn't exists");
         }
         return crudResponse;
     }

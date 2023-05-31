@@ -17,6 +17,10 @@ public class GpsController {
     @Autowired
     private GpsService gpsService;
 
+    public GpsController(GpsService gpsService) {
+        this.gpsService = gpsService;
+    }
+
     @GetMapping("/all")
     public List<Gps> getAllGps() {
         return gpsService.getAllGps();

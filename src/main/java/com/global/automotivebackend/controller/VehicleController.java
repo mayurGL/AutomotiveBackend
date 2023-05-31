@@ -17,6 +17,10 @@ public class VehicleController {
     @Autowired
     private VehicleService vehicleService;
 
+    public VehicleController(VehicleService vehicleService) {
+        this.vehicleService = vehicleService;
+    }
+
     @GetMapping("/all")
     public List<Vehicle> findAllVehicles() {
         return vehicleService.getAllVehicles();

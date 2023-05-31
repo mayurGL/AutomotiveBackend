@@ -23,15 +23,21 @@ public class DeviceServiceImpl implements DeviceService {
     @Autowired
     private DeviceHistoricalRepository deviceHistoricalRepository;
 
+    public DeviceServiceImpl(DeviceRepository deviceRepository, DeviceHistoricalRepository deviceHistoricalRepository) {
+        this.deviceRepository = deviceRepository;
+        this.deviceHistoricalRepository = deviceHistoricalRepository;
+    }
+
     public List<Device> getAllDevices() {
         return deviceRepository.findAll();
     }
 
     public Device getDevice(Integer id) {
-        if (deviceRepository.findById(id).isEmpty()){
-            throw new IdNotFoundException("Device with this ID doesn't exist!!");
+        Optional<Device> deviceToBeFound = deviceRepository.findById(id);
+        if (deviceToBeFound.isEmpty()){
+            throw new IdNotFoundException("Device with this ID doesn't exists");
         }else {
-            return deviceRepository.findById(id).get();
+            return deviceToBeFound.get();
         }
     }
 
@@ -44,11 +50,11 @@ public class DeviceServiceImpl implements DeviceService {
         Device deviceToBeSaved = new Device(device.getDeviceId(), device.getDeviceType(), device.getDeviceName(), timestamp, timestamp, device.getCreatedBy(), device.getModifiedBy());
         DeviceHistorical deviceHistorical = new DeviceHistorical(UUID.randomUUID(), device.getDeviceId(), device.getDeviceType(), device.getDeviceName(), timestamp, timestamp, device.getCreatedBy(), device.getModifiedBy());
         if (deviceRepository.findById(deviceToBeSaved.getDeviceId()).isPresent()){
-            throw new IdAlreadyExistsException("Device with this ID already exists!!");
+            throw new IdAlreadyExistsException("Device with this ID already exists");
         }else{
             deviceRepository.save(deviceToBeSaved);
             deviceHistoricalRepository.save(deviceHistorical);
-            crudResponse.setMessage("Device with " + device.getDeviceId() + " is added");
+            crudResponse.setMessage("Device with id " + device.getDeviceId() + " is added");
             crudResponse.setStatus(true);
             return crudResponse;
         }
@@ -67,7 +73,7 @@ public class DeviceServiceImpl implements DeviceService {
             crudResponse.setMessage("Device with id " + device.getDeviceId() + " is updated");
             crudResponse.setStatus(true);
         } else {
-            throw new IdNotFoundException("Device with this ID doesn't exist!!");
+            throw new IdNotFoundException("Device with this ID doesn't exists");
         }
         return crudResponse;
     }

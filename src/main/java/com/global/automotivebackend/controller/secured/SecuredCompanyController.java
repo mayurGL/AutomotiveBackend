@@ -21,6 +21,10 @@ public class SecuredCompanyController {
     @Autowired
     private CompanyService companyService;
 
+    public SecuredCompanyController(CompanyService companyService) {
+        this.companyService = companyService;
+    }
+
     @PostMapping("/add")
     public ResponseEntity<GenericResponse> addCompany(@Valid @RequestBody Company company, HttpServletRequest request) {
         String token = CookieToJwtConverter.getTokenFromCookie(request);

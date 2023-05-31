@@ -13,6 +13,10 @@ public class GpsServiceImpl implements GpsService {
     @Autowired
     private GpsRepository gpsRepository;
 
+    public GpsServiceImpl(GpsRepository gpsRepository) {
+        this.gpsRepository = gpsRepository;
+    }
+
     public List<Gps> getAllGps() {
 
         return gpsRepository.findAll();

@@ -8,19 +8,27 @@ import com.global.automotivebackend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UserServiceImpl implements UserService {
 
     @Autowired
     UserRepository userRepository;
 
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     @Override
     public GenericResponse register(User user) {
-        if (userRepository.findById(user.getUsername()).isEmpty()){
-            throw new UserAlreadyExistsException("User with this username already exists!!");
-        }else {
-            userRepository.save(user);
+        Optional<User> userToBeFound = userRepository.findById(user.getUsername());
+        if (userToBeFound.isPresent()){
+            throw new UserAlreadyExistsException("User with this username already exists");
         }
+
+        userRepository.save(user);
+
         return new GenericResponse("User registered successfully",true);
     }
 

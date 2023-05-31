@@ -1,7 +1,10 @@
 package com.global.automotivebackend.service;
 
+import com.global.automotivebackend.advice.IdAlreadyExistsException;
+import com.global.automotivebackend.advice.IdNotFoundException;
 import com.global.automotivebackend.dto.GenericResponse;
 import com.global.automotivebackend.model.Company;
+import com.global.automotivebackend.model.CompanyHistorical;
 import com.global.automotivebackend.repository.CompanyHistoricalRepository;
 import com.global.automotivebackend.repository.CompanyRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,7 +15,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDateTime;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -25,13 +27,13 @@ class CompanyServiceTest {
 
 
     @Mock
-    CompanyRepository companyRepository;
+    private CompanyRepository companyRepository;
 
     @Mock
-    CompanyHistoricalRepository companyHistoricalRepository;
+    private CompanyHistoricalRepository companyHistoricalRepository;
 
-    @Autowired
-    CompanyService companyService;
+
+    private CompanyService companyService;
 
     @BeforeEach
     void setUp() {
@@ -53,128 +55,154 @@ class CompanyServiceTest {
     }
 
 
-
     @Test
-    public void testGetCompany_ExistingCompany() {
+    public void testGetCompanyByIdExists() {
 
-        Integer companyId = 5;
-        Company expectedCompany =  new Company(5, "Infosys", "Pune", LocalDateTime.now(), LocalDateTime.now(), "Mayur", "Mayur");
-
-        when(companyRepository.findById(companyId)).thenReturn(Optional.of(expectedCompany));
+        Company company =  new Company(5, "Infosys", "Pune", LocalDateTime.now(), LocalDateTime.now(), "Mayur", "Mayur");
+        when(companyRepository.findById(5)).thenReturn(Optional.of(company));
 
 
-        Company actualCompany = companyService.getCompany(companyId);
+        Company result = companyService.getCompany(5);
 
 
-        assertEquals(expectedCompany, actualCompany);
-        verify(companyRepository, times(1)).findById(companyId);
+        assertNotNull(result);
+        assertEquals(5, result.getCompanyId());
+        assertEquals("Infosys", result.getCompanyName());
+
+
+        verify(companyRepository).findById(5);
     }
 
     @Test
-    public void testGetCompany_NonExistingCompany() {
+    public void testGetCompanyByIdNotExists() {
 
-        Integer companyId = 19;
-
-        when(companyRepository.findById(companyId)).thenReturn(Optional.empty());
+        when(companyRepository.findById(anyInt())).thenReturn(Optional.empty());
 
 
-        assertThrows(NoSuchElementException.class, () -> companyService.getCompany(companyId));
-        verify(companyRepository, times(1)).findById(companyId);
+        assertThrows(IdNotFoundException.class, () -> companyService.getCompany(90));
+
+
+        verify(companyRepository).findById(90);
     }
 
 
-
-
     @Test
-    void testAddCompany() {
+    void testAddCompanySuccess() {
 
-        Company company =  new Company(7, "Meta", "California", null, null, "Mayur", "Mayur");
+        Company company =  new Company(5, "Meta", "California", null, null, "Mayur", "Mayur");
         GenericResponse testCase1 = new GenericResponse();
         testCase1.setMessage("Company with " + company.getCompanyId() + " is added");
         testCase1.setStatus(true);
 
-        assertThat(companyService.addCompany(company, LocalDateTime.now())).isEqualTo(testCase1);
+        when(companyRepository.findById(company.getCompanyId())).thenReturn(Optional.empty());
+
+        GenericResponse companyAdded = companyService.addCompany(company,LocalDateTime.now());
+
+        assertThat(companyAdded).isEqualTo(testCase1);
+
+
+    }
+
+    @Test
+    void testAddCompanyWithExistingId() {
+
+        Company company =  new Company(1, "XYZ Company", "Dallas", null, null, "Mayur", "Mayur");
+
+        LocalDateTime timestamp = LocalDateTime.now();
+
+        when(companyRepository.findById(company.getCompanyId())).thenReturn(Optional.of(company));
+
+
+        IdAlreadyExistsException exception = assertThrows(IdAlreadyExistsException.class, () -> companyService.addCompany(company, timestamp));
+
+
+        assertEquals("Company ID already exists", exception.getMessage());
 
 
     }
 
 
-
     @Test
-    public void testDeleteCompanyById_ExistingCompany() {
+    public void testDeleteCompanyByIdSuccess() {
 
-        Integer companyId = 1;
+        int companyId = 1;
         Company company = new Company(1, "GlobalLogic", "Noida", null, null, "Mayur", "Mayur");
-
         when(companyRepository.findById(companyId)).thenReturn(Optional.of(company));
 
 
         GenericResponse response = companyService.deleteCompanyById(companyId);
 
 
+        assertNotNull(response);
         assertTrue(response.isStatus());
         assertEquals("Company with " + companyId + " is deleted", response.getMessage());
-        verify(companyRepository, times(1)).findById(companyId);
-        verify(companyRepository, times(1)).deleteById(companyId);
+
+
+        verify(companyRepository).findById(companyId);
+        verify(companyRepository).deleteById(companyId);
     }
 
     @Test
-    public void testDeleteCompanyById_NonExistingCompany() {
+    public void testDeleteCompanyByIdNotFound() {
 
-        Integer companyId = 19;
-
+        int companyId = 10;
         when(companyRepository.findById(companyId)).thenReturn(Optional.empty());
 
 
-        GenericResponse response = companyService.deleteCompanyById(companyId);
+        IdNotFoundException exception = assertThrows(IdNotFoundException.class, () -> companyService.deleteCompanyById(companyId));
 
 
-        assertFalse(response.isStatus());
-        assertEquals("Company with " + companyId + " is not found", response.getMessage());
-        verify(companyRepository, times(1)).findById(companyId);
-        verify(companyRepository, never()).deleteById(any());
+        assertEquals("Company ID doesn't exists", exception.getMessage());
+
     }
 
 
-
     @Test
-    public void testUpdateCompany_ExistingCompany() {
+    public void testUpdateCompanySuccess() {
 
-        int companyId = 4;
+        int companyId = 1;
         LocalDateTime modifiedTime = LocalDateTime.now();
-        Company existingCompany = new Company(4, "TCS", "Hyderabad", LocalDateTime.now(), LocalDateTime.now(), "Mayur", "Mayur");
-        Company updatedCompany = new Company(companyId, "Tata Steel", "Mumbai", existingCompany.getCreatedTime(), modifiedTime, existingCompany.getCreatedBy(), "Rahul");
-        GenericResponse expectedResponse = new GenericResponse("Company with " + companyId + " is updated", true);
-
+        Company existingCompany = new Company(companyId, "ABC Company", "Address", LocalDateTime.now(), LocalDateTime.now(), "John", "John");
+        Company updatedCompany = new Company(companyId, "Updated Company", "Updated Address", existingCompany.getCreatedTime(), modifiedTime, existingCompany.getCreatedBy(), "Person Y");
         when(companyRepository.findById(companyId)).thenReturn(Optional.of(existingCompany));
         when(companyRepository.save(updatedCompany)).thenReturn(updatedCompany);
+        when(companyHistoricalRepository.save(any(CompanyHistorical.class))).thenReturn(null);
 
 
         GenericResponse response = companyService.updateCompany(updatedCompany, modifiedTime);
 
 
-        assertEquals(expectedResponse, response);
-        verify(companyRepository, times(1)).findById(companyId);
-        verify(companyRepository, times(1)).save(updatedCompany);
+        assertNotNull(response);
+        assertTrue(response.isStatus());
+        assertEquals("Company with " + companyId + " is updated", response.getMessage());
+
+
+        verify(companyRepository).findById(companyId);
+        verify(companyRepository).save(updatedCompany);
+        verify(companyHistoricalRepository).save(any(CompanyHistorical.class));
     }
 
     @Test
-    public void testUpdateCompany_NonExistingCompany() {
+    public void testUpdateCompanyNotFound() {
 
-        Integer companyId = 19;
+        int companyId = 1;
+        Company updatedCompany = new Company(1, "ABC company", "Hyderabad", LocalDateTime.now(), LocalDateTime.now(), "Mayur", "Mayur");
         LocalDateTime modifiedTime = LocalDateTime.now();
-        Company updatedCompany = new Company(companyId, "Updated Company", "Updated Address", LocalDateTime.now(), modifiedTime, "createdBy", "modifiedBy");
-        GenericResponse expectedResponse = new GenericResponse( "Company with " + companyId + " is not found", false);
-
         when(companyRepository.findById(companyId)).thenReturn(Optional.empty());
 
 
-        GenericResponse response = companyService.updateCompany(updatedCompany, modifiedTime);
+        IdNotFoundException exception = assertThrows(IdNotFoundException.class, () -> companyService.updateCompany(updatedCompany, modifiedTime));
 
 
-        assertEquals(expectedResponse, response);
-        verify(companyRepository, times(1)).findById(companyId);
-        verify(companyRepository, never()).save(any());
-        verify(companyHistoricalRepository, never()).save(any());
+        assertEquals("Company ID doesn't exists", exception.getMessage());
+
     }
+
+
+
+
+
+
+
+
 }

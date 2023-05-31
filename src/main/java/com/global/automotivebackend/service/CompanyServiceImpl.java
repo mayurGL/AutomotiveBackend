@@ -33,10 +33,11 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     public Company getCompany(Integer id) {
-        if (!companyRepository.findById(id).isPresent()){
-            throw new IdNotFoundException("Company ID does not exist!!");
+        Optional<Company> companyToBeFound = companyRepository.findById(id);
+        if (companyToBeFound.isEmpty()){
+            throw new IdNotFoundException("Company ID does not exists");
         } else {
-            return companyRepository.findById(id).get();
+            return companyToBeFound.get();
         }
     }
 
@@ -48,8 +49,8 @@ public class CompanyServiceImpl implements CompanyService {
         GenericResponse crudResponse = new GenericResponse();
         Company companyToBeSaved = new Company(company.getCompanyId(), company.getCompanyName(), company.getCompanyAddress(), timestamp, timestamp, company.getCreatedBy(), company.getModifiedBy());
         CompanyHistorical companyHistorical = new CompanyHistorical(UUID.randomUUID(), company.getCompanyId(), company.getCompanyName(), company.getCompanyAddress(), timestamp, timestamp, company.getCreatedBy(), company.getModifiedBy());
-        if (!companyRepository.findById(companyToBeSaved.getCompanyId()).isPresent()){
-            throw new IdAlreadyExistsException("Company ID already exists!!");
+        if (companyRepository.findById(companyToBeSaved.getCompanyId()).isPresent()){
+            throw new IdAlreadyExistsException("Company ID already exists");
         } else {
             companyRepository.save(companyToBeSaved);
             companyHistoricalRepository.save(companyHistorical);
@@ -67,7 +68,7 @@ public class CompanyServiceImpl implements CompanyService {
             crudResponse.setMessage("Company with " + companyId + " is deleted");
             crudResponse.setStatus(true);
         } else {
-            throw new IdNotFoundException("Company ID doesn't exist!!");
+            throw new IdNotFoundException("Company ID doesn't exists");
         }
         return crudResponse;
     }
@@ -83,7 +84,7 @@ public class CompanyServiceImpl implements CompanyService {
             crudResponse.setMessage("Company with " + company.getCompanyId() + " is updated");
             crudResponse.setStatus(true);
         } else {
-            throw new IdNotFoundException("Company ID doesn't exist!!");
+            throw new IdNotFoundException("Company ID doesn't exists");
         }
         return crudResponse;
     }
