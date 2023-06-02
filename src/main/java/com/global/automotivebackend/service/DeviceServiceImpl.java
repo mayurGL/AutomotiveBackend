@@ -7,6 +7,7 @@ import com.global.automotivebackend.model.Device;
 import com.global.automotivebackend.model.DeviceHistorical;
 import com.global.automotivebackend.repository.DeviceHistoricalRepository;
 import com.global.automotivebackend.repository.DeviceRepository;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,25 +24,31 @@ public class DeviceServiceImpl implements DeviceService {
     @Autowired
     private DeviceHistoricalRepository deviceHistoricalRepository;
 
+    private static final Logger logger = Logger.getLogger(DeviceServiceImpl.class);
+
     public DeviceServiceImpl(DeviceRepository deviceRepository, DeviceHistoricalRepository deviceHistoricalRepository) {
         this.deviceRepository = deviceRepository;
         this.deviceHistoricalRepository = deviceHistoricalRepository;
     }
 
     public List<Device> getAllDevices() {
+        logger.info("@GET - Print all devices");
         return deviceRepository.findAll();
     }
 
     public Device getDevice(Integer id) {
         Optional<Device> deviceToBeFound = deviceRepository.findById(id);
         if (deviceToBeFound.isEmpty()){
-            throw new IdNotFoundException("Device with this ID doesn't exists");
+            logger.error("@GET - Device with ID: " + id + " doesn't exist");
+            throw new IdNotFoundException("Device with ID: " + id + " doesn't exist");
         }else {
+            logger.info("@GET - Print device with ID: " + id);
             return deviceToBeFound.get();
         }
     }
 
     public List<DeviceHistorical> getDeviceHistorical() {
+        logger.info("@GET - Print historical data of device");
         return deviceHistoricalRepository.findAll();
     }
 
@@ -50,11 +57,13 @@ public class DeviceServiceImpl implements DeviceService {
         Device deviceToBeSaved = new Device(device.getDeviceId(), device.getDeviceType(), device.getDeviceName(), timestamp, timestamp, device.getCreatedBy(), device.getModifiedBy());
         DeviceHistorical deviceHistorical = new DeviceHistorical(UUID.randomUUID(), device.getDeviceId(), device.getDeviceType(), device.getDeviceName(), timestamp, timestamp, device.getCreatedBy(), device.getModifiedBy());
         if (deviceRepository.findById(deviceToBeSaved.getDeviceId()).isPresent()){
-            throw new IdAlreadyExistsException("Device with this ID already exists");
+            logger.error("@POST - Device with ID: " + device.getDeviceId() + " already exists");
+            throw new IdAlreadyExistsException("Device with ID: " + device.getDeviceId() + " already exists");
         }else{
             deviceRepository.save(deviceToBeSaved);
             deviceHistoricalRepository.save(deviceHistorical);
-            crudResponse.setMessage("Device with id " + device.getDeviceId() + " is added");
+            crudResponse.setMessage("Device with ID: " + device.getDeviceId() + " added");
+            logger.info("@POST - Device with ID: " + device.getDeviceId() + " added");
             crudResponse.setStatus(true);
             return crudResponse;
         }
@@ -70,10 +79,12 @@ public class DeviceServiceImpl implements DeviceService {
             DeviceHistorical deviceHistorical = new DeviceHistorical(UUID.randomUUID(), device.getDeviceId(), device.getDeviceType(), device.getDeviceName(), foundDevices.getCreatedTime(), modifiedTime, foundDevices.getCreatedBy(), device.getModifiedBy());
             deviceRepository.save(updateDevice);
             deviceHistoricalRepository.save(deviceHistorical);
-            crudResponse.setMessage("Device with id " + device.getDeviceId() + " is updated");
+            crudResponse.setMessage("Device with ID: " + device.getDeviceId() + " updated");
+            logger.info("@PUT - Device with ID: " + device.getDeviceId() + " updated");
             crudResponse.setStatus(true);
         } else {
-            throw new IdNotFoundException("Device with this ID doesn't exists");
+            logger.error("@PUT - Device with ID: " + device.getDeviceId() + " doesn't exist");
+            throw new IdNotFoundException("Device with ID: " + device.getDeviceId() + " doesn't exist");
         }
         return crudResponse;
     }
@@ -83,10 +94,12 @@ public class DeviceServiceImpl implements DeviceService {
         Optional<Device> device = deviceRepository.findById(deviceId);
         if (device.isPresent()) {
             deviceRepository.deleteById(deviceId);
-            crudResponse.setMessage("Device with id " + deviceId + " is deleted");
+            crudResponse.setMessage("Device with ID: " + deviceId + " deleted");
+            logger.info("@DELETE - Device with ID: " + deviceId + " deleted");
             crudResponse.setStatus(true);
         } else {
-            throw new IdNotFoundException("Device with this ID doesn't exists");
+            logger.error("@DELETE - Device with ID: " + deviceId + " doesn't exist!!");
+            throw new IdNotFoundException("Device with ID: " + deviceId + " doesn't exist!!");
         }
         return crudResponse;
     }

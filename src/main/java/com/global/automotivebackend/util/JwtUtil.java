@@ -31,10 +31,8 @@ public class JwtUtil {
 
 
     public static User validateToken(String token){
-
         return tokenMap.get(token);
     }
-
 
     public static void invalidateToken(String token){
         tokenMap.remove(token);

@@ -1,6 +1,5 @@
 package com.global.automotivebackend.controller;
 
-
 import com.global.automotivebackend.advice.AuthenticationFailedException;
 import com.global.automotivebackend.dto.GenericResponse;
 import com.global.automotivebackend.dto.LoginUserRequest;
@@ -10,8 +9,8 @@ import com.global.automotivebackend.util.JwtUtil;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,6 +23,8 @@ public class UserController {
 
     @Autowired
     UserService userService;
+
+    private static final Logger logger = Logger.getLogger(UserController.class);
 
     public UserController(UserService userService) {
         this.userService = userService;
@@ -39,6 +40,7 @@ public class UserController {
 
         User userToBeLoggedIn = userService.validateUser(loginUserRequest);
         if(userToBeLoggedIn==null){
+            logger.error("Login Failed!!");
             throw new AuthenticationFailedException("ID and password not found!! TRY AGAIN!!");
         }
 
@@ -49,7 +51,7 @@ public class UserController {
         cookie.setSecure(true);
         cookie.setPath("/");
         response.addCookie(cookie);
-
+        logger.info("User: " + loginUserRequest.getUsername() + " Login Successful!!");
         return ResponseEntity.ok(new GenericResponse("Login successful",true));
     }
 }
