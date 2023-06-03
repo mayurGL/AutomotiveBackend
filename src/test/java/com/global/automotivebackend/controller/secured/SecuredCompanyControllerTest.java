@@ -6,44 +6,74 @@ import com.global.automotivebackend.model.Company;
 import com.global.automotivebackend.model.User;
 import com.global.automotivebackend.service.CompanyService;
 import com.global.automotivebackend.util.JwtUtil;
+
 import jakarta.servlet.http.HttpServletRequest;
+import org.junit.jupiter.api.Assertions;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
+import org.mockito.MockedStatic;
+import org.mockito.Mockito;
+
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
+
 
 @ExtendWith(MockitoExtension.class)
 public class SecuredCompanyControllerTest {
 
-    @Mock
-    private CompanyService companyService;
+//    @Mock
+//    private CompanyService companyService;
+//
+//    private SecuredCompanyController securedCompanyController;
+//
+//    @BeforeEach
+//    void setUp() {
+//        securedCompanyController = new SecuredCompanyController(companyService);
+//    }
 
-    private SecuredCompanyController securedCompanyController;
+//    @Test
+//    public void testSuccessAddCompany(){
+//
+//        Company company = new Company();
+//        company.setCompanyId(1);
+//        company.setCompanyName("Test Company");
+//        HttpServletRequest request = mock(HttpServletRequest.class);
+//
+//        Mockito.when(request.getHeader("Cookie")).thenReturn("MyJWT=exampleToken");
+//        Mockito.when(JwtUtil.validateToken("exampleToken")).thenReturn(new User("username", "example@gmail.com" ,"password", "name"));
+//
+//        Mockito.when(companyService.addCompany(company, LocalDateTime.now()))
+//                .thenReturn(new GenericResponse("Company with "+company.getCompanyId()+" is added", true));
+//
+//        ResponseEntity<GenericResponse> response = securedCompanyController.addCompany(company,request);
+//
+//        Assertions.assertEquals(true,response.getBody().isStatus());
+//    }
 
-    @BeforeEach
-    void setUp() {
-        securedCompanyController = new SecuredCompanyController(companyService);
-    }
+
+
+
+
 
 
 //    @Test
 //    public void testAddCompany_ReturnsUnauthorizedResponse_WhenTokenInvalid() {
 //        // Arrange
-//        Company company = new Company(1, "ABC Company", "Address", LocalDateTime.now(), LocalDateTime.now(), "John", "John");
 //        HttpServletRequest request = mock(HttpServletRequest.class);
-//        when(CookieToJwtConverter.getTokenFromCookie(request)).thenReturn("invalidToken");
-//        when(JwtUtil.validateToken("invalidToken")).thenReturn(null);
+//        when(CookieToJwtConverter.getTokenFromCookie(request)).thenReturn(null);
 //
 //        // Act
-//        ResponseEntity<GenericResponse> responseEntity = securedCompanyController.addCompany(company, request);
+//        ResponseEntity<GenericResponse> responseEntity = securedCompanyController.addCompany(new Company(), request);
 //
 //        // Assert
 //        assertEquals(HttpStatus.UNAUTHORIZED, responseEntity.getStatusCode());
@@ -51,30 +81,85 @@ public class SecuredCompanyControllerTest {
 //        assertFalse(responseEntity.getBody().isStatus());
 //        assertEquals("Unauthorized access please login", responseEntity.getBody().getMessage());
 //
-//
+//        verify(companyService, never()).addCompany(any(), any());
 //    }
 //
 //    @Test
-//    public void testAddCompany_ReturnsSuccessfulResponse_WhenTokenValid() {
+//    public void testAddCompany_ReturnsUnauthorizedResponse_WhenTokenExpired() {
 //        // Arrange
 //        HttpServletRequest request = mock(HttpServletRequest.class);
-//        when(CookieToJwtConverter.getTokenFromCookie(request)).thenReturn("validToken");
-//        User user = new User("username","user@gmail.com" ,"password","myName");
-//        when(JwtUtil.validateToken("validToken")).thenReturn(user);
+//        String expiredToken = "expiredToken";
 //
-//        Company company = new Company(3, "company A", "Address z", LocalDateTime.now(), LocalDateTime.now(), "Person M", "Person E");
-//        LocalDateTime currentDateTime = LocalDateTime.now();
-//
-//        when(companyService.addCompany(company, currentDateTime)).thenReturn(new GenericResponse("Company with "+company.getCompanyId()+" is added", true));
 //
 //        // Act
-//        ResponseEntity<GenericResponse> responseEntity = securedCompanyController.addCompany(company, request);
+//        ResponseEntity<GenericResponse> responseEntity = securedCompanyController.addCompany(new Company(), request);
 //
 //        // Assert
-//        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+//        assertEquals(HttpStatus.UNAUTHORIZED, responseEntity.getStatusCode());
 //        assertNotNull(responseEntity.getBody());
-//        assertTrue(responseEntity.getBody().isStatus());
+//        assertFalse(responseEntity.getBody().isStatus());
+//        assertEquals("Unauthorized access please login", responseEntity.getBody().getMessage());
 //
-//        verify(companyService).addCompany(company, currentDateTime);
+//        verify(companyService, never()).addCompany(any(), any());
 //    }
+
+//    @Test
+//    public void testAddCompany_ValidToken() {
+//        // Arrange
+//        User user = new User("username", "example@gmail.com" ,"password", "name");
+//
+//
+//        Company company = new Company();
+//        company.setCompanyId(2);
+//        company.setCreatedBy(user.getUsername());
+//        company.setCreatedBy(user.getUsername());
+//
+//
+//        String validToken="validToken";
+//
+//        HttpServletRequest request = mock(HttpServletRequest.class);
+//        MockedStatic<CookieToJwtConverter> converterMockedStatic = mockStatic(CookieToJwtConverter.class);
+//        MockedStatic<JwtUtil> jwtUtilMockedStatic  = mockStatic(JwtUtil.class);
+//
+//        converterMockedStatic.when(()-> CookieToJwtConverter.getTokenFromCookie(request)).thenReturn(validToken);
+//        jwtUtilMockedStatic.when(()->JwtUtil.validateToken(validToken)).thenReturn(user).thenCallRealMethod();
+//
+//
+//        when(companyService.addCompany(company,LocalDateTime.now())).thenReturn(new GenericResponse("Company with " + company.getCompanyId() + " is added",true));
+//        when(securedCompanyController.addCompany(company,request)).thenReturn(ResponseEntity.ok(new GenericResponse("Company with " + company.getCompanyId() + " is added",true)));
+//
+//
+//        // Act
+//        ResponseEntity<GenericResponse> response = securedCompanyController.addCompany(company, request);
+//
+//        // Assert
+//        Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
+//        Assertions.assertTrue(response.getBody().isStatus());
+//
+//        converterMockedStatic.close();
+//        jwtUtilMockedStatic.close();
+//    }
+
+//    @Test
+//    public void testAddCompany_InvalidToken() {
+//        // Arrange
+//        Company company = new Company();
+//        company.setCompanyName("Test Company");
+//
+//        HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
+//        PowerMockito.mockStatic(CookieToJwtConverter.class);
+//        PowerMockito.when(CookieToJwtConverter.getTokenFromCookie(request)).thenReturn(null);
+//
+//        SecuredCompanyController companyController = new SecuredCompanyController(companyService);
+//
+//        // Act
+//        ResponseEntity<GenericResponse> response = companyController.addCompany(company, request);
+//
+//        // Assert
+//        Assertions.assertEquals(HttpStatus.UNAUTHORIZED, response.getStatusCode());
+//        Assertions.assertFalse(response.getBody().isStatus());
+//        Assertions.assertEquals("Unauthorized access please login", response.getBody().getMessage());
+//    }
+
+
 }

@@ -3,8 +3,10 @@ package com.global.automotivebackend;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.global.automotivebackend.kafkavalidation.KafkaValidator;
 import com.global.automotivebackend.model.*;
 import com.global.automotivebackend.repository.*;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
@@ -14,28 +16,33 @@ import java.util.UUID;
 import static com.global.automotivebackend.kafkavalidation.KafkaValidator.*;
 
 @Component
+@AllArgsConstructor
 public class KafkaListeners {
 
     @Autowired
-    CompanyRepository companyRepository;
+    private CompanyRepository companyRepository;
 
     @Autowired
-    CompanyHistoricalRepository companyHistoricalRepository;
+    private CompanyHistoricalRepository companyHistoricalRepository;
 
     @Autowired
-    GpsRepository gpsRepository;
+    private GpsRepository gpsRepository;
 
     @Autowired
-    DeviceRepository deviceRepository;
+    private DeviceRepository deviceRepository;
 
     @Autowired
-    DeviceHistoricalRepository deviceHistoricalRepository;
+    private DeviceHistoricalRepository deviceHistoricalRepository;
 
     @Autowired
-    VehicleRepository vehicleRepository;
+    private VehicleRepository vehicleRepository;
 
     @Autowired
-    VehicleHistoricalRepository vehicleHistoricalRepository;
+    private VehicleHistoricalRepository vehicleHistoricalRepository;
+
+    @Autowired
+    private KafkaValidator kafkaValidator;
+
 
     @KafkaListener(topics = "companyTopic", groupId = "groupId")
     void companyTopicListener(String data) throws JsonProcessingException {
@@ -43,7 +50,8 @@ public class KafkaListeners {
         objectMapper.registerModule(new JavaTimeModule());
         Company company = objectMapper.readValue(data, Company.class);
 
-        if(isValidCompany(company)){
+
+        if(kafkaValidator.isValidCompany(company)){
             CompanyHistorical companyHistorical = new CompanyHistorical(UUID.randomUUID(), company.getCompanyId(), company.getCompanyName(), company.getCompanyAddress(), company.getCreatedTime(), company.getModifiedTime(), company.getCreatedBy(), company.getModifiedBy());
             companyRepository.save(company);
             companyHistoricalRepository.save(companyHistorical);
@@ -56,7 +64,7 @@ public class KafkaListeners {
         objectMapper.registerModule(new JavaTimeModule());
         Gps gps = objectMapper.readValue(data, Gps.class);
 
-        if(isValidGps(gps)){
+        if(kafkaValidator.isValidGps(gps)){
             gpsRepository.save(gps);
         }
 
@@ -68,7 +76,7 @@ public class KafkaListeners {
         objectMapper.registerModule(new JavaTimeModule());
         Device device = objectMapper.readValue(data, Device.class);
 
-        if(isValidDevice(device)){
+        if(kafkaValidator.isValidDevice(device)){
             DeviceHistorical deviceHistorical = new DeviceHistorical(UUID.randomUUID(), device.getDeviceId(), device.getDeviceType(), device.getDeviceName(), device.getCreatedTime(), device.getModifiedTime(), device.getCreatedBy(), device.getModifiedBy());
             deviceRepository.save(device);
             deviceHistoricalRepository.save(deviceHistorical);
@@ -82,7 +90,7 @@ public class KafkaListeners {
         objectMapper.registerModule(new JavaTimeModule());
         Vehicle vehicle = objectMapper.readValue(data, Vehicle.class);
 
-        if(isValidVehicle(vehicle)){
+        if(kafkaValidator.isValidVehicle(vehicle)){
             VehicleHistorical vehicleHistorical = new VehicleHistorical(UUID.randomUUID(), vehicle.getVehicleId(), vehicle.getCompanyId(), vehicle.getMake(), vehicle.getModel(), vehicle.getYear(), vehicle.getCreatedTime(), vehicle.getModifiedTime(), vehicle.getCreatedBy(), vehicle.getModifiedBy());
             vehicleRepository.save(vehicle);
             vehicleHistoricalRepository.save(vehicleHistorical);

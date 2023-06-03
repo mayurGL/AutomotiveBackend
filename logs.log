@@ -1,0 +1,261 @@
+2023-06-02 09:52:55 ERROR VehicleServiceImpl:100 - @DELETE - Vehicle with ID: 10 doesn't exist!!
+2023-06-02 09:52:55 INFO  VehicleServiceImpl:82 - @PUT - Vehicle with ID: 1 updated
+2023-06-02 09:52:55 INFO  VehicleServiceImpl:97 - @DELETE - Vehicle with ID: 1 deleted
+2023-06-02 09:52:55 ERROR VehicleServiceImpl:60 - @POST - Vehicle with ID: 1 already exists
+2023-06-02 09:52:55 INFO  VehicleServiceImpl:51 - @GET - Print historical data of vehicle
+2023-06-02 09:52:55 ERROR VehicleServiceImpl:42 - @GET - Vehicle with ID: 90 doesn't exist
+2023-06-02 09:52:55 INFO  VehicleServiceImpl:35 - @GET - Print all Vehicles
+2023-06-02 09:52:55 INFO  VehicleServiceImpl:45 - @GET - Print vehicle with ID: 5
+2023-06-02 09:52:55 ERROR VehicleServiceImpl:85 - @PUT - Vehicle with ID: 3 doesn't exist
+2023-06-02 09:52:55 INFO  VehicleServiceImpl:66 - @POST - Vehicle with ID: 5 added
+2023-06-02 09:53:05 INFO  GpsServiceImpl:24 - @GET - Print all GPS data
+2023-06-02 09:53:06 ERROR UserController:43 - Login Failed!!
+2023-06-02 09:53:06 INFO  UserController:54 - User: username Login Successful!!
+2023-06-02 09:53:06 INFO  CompanyServiceImpl:66 - @POST - Company with ID: 5 added
+2023-06-02 09:53:06 ERROR CompanyServiceImpl:81 - @DELETE - Company with ID: 10 doesn't exist
+2023-06-02 09:53:06 INFO  CompanyServiceImpl:78 - @DELETE - Company with ID: 1 deleted
+2023-06-02 09:53:06 ERROR CompanyServiceImpl:99 - @PUT - Company with ID: 1 doesn't exist
+2023-06-02 09:53:06 INFO  CompanyServiceImpl:96 - @PUT - Company with ID: 1 updated
+2023-06-02 09:53:06 INFO  CompanyServiceImpl:45 - @GET - Print company with ID: 5
+2023-06-02 09:53:06 ERROR CompanyServiceImpl:42 - @GET - Company with ID: 90 doesn't exist
+2023-06-02 09:53:06 INFO  CompanyServiceImpl:51 - @GET - Print historical data of company
+2023-06-02 09:53:06 INFO  CompanyServiceImpl:35 - @GET - Print all companies
+2023-06-02 09:53:06 ERROR CompanyServiceImpl:60 - @POST - Company with ID: 1 already exists
+2023-06-02 09:53:06 ERROR DeviceServiceImpl:86 - @PUT - Device with ID: 3 doesn't exist
+2023-06-02 09:53:06 ERROR DeviceServiceImpl:60 - @POST - Device with ID: 3 already exists
+2023-06-02 09:53:06 INFO  DeviceServiceImpl:83 - @PUT - Device with ID: 2 updated
+2023-06-02 09:53:06 INFO  DeviceServiceImpl:98 - @DELETE - Device with ID: 2 deleted
+2023-06-02 09:53:06 INFO  DeviceServiceImpl:66 - @POST - Device with ID: 3 added
+2023-06-02 09:53:06 INFO  DeviceServiceImpl:35 - @GET - Print all devices
+2023-06-02 09:53:06 ERROR DeviceServiceImpl:101 - @DELETE - Device with ID: 10 doesn't exist!!
+2023-06-02 09:53:06 INFO  DeviceServiceImpl:45 - @GET - Print device with ID: 3
+2023-06-02 09:53:06 INFO  DeviceServiceImpl:51 - @GET - Print historical data of device
+2023-06-02 09:53:06 ERROR DeviceServiceImpl:42 - @GET - Device with ID: 90 doesn't exist
+2023-06-02 09:53:06 INFO  UserServiceImpl:34 - @POST - User with username: john123 registered
+2023-06-02 09:53:06 ERROR UserServiceImpl:30 - User with username: carl2009 doesn't exist
+2023-06-03 11:19:36 ERROR VehicleServiceImpl:100 - @DELETE - Vehicle with ID: 10 doesn't exist!!
+2023-06-03 11:19:36 INFO  VehicleServiceImpl:82 - @PUT - Vehicle with ID: 1 updated
+2023-06-03 11:19:36 INFO  VehicleServiceImpl:97 - @DELETE - Vehicle with ID: 1 deleted
+2023-06-03 11:19:36 ERROR VehicleServiceImpl:60 - @POST - Vehicle with ID: 1 already exists
+2023-06-03 11:19:36 INFO  VehicleServiceImpl:51 - @GET - Print historical data of vehicle
+2023-06-03 11:19:36 ERROR VehicleServiceImpl:42 - @GET - Vehicle with ID: 90 doesn't exist
+2023-06-03 11:19:36 INFO  VehicleServiceImpl:35 - @GET - Print all Vehicles
+2023-06-03 11:19:36 INFO  VehicleServiceImpl:45 - @GET - Print vehicle with ID: 5
+2023-06-03 11:19:36 ERROR VehicleServiceImpl:85 - @PUT - Vehicle with ID: 3 doesn't exist
+2023-06-03 11:19:36 INFO  VehicleServiceImpl:66 - @POST - Vehicle with ID: 5 added
+2023-06-03 11:19:52 INFO  GpsServiceImpl:24 - @GET - Print all GPS data
+2023-06-03 11:19:53 ERROR UserController:43 - Login Failed!!
+2023-06-03 11:19:53 INFO  UserController:54 - User: username Login Successful!!
+2023-06-03 11:19:54 INFO  CompanyServiceImpl:66 - @POST - Company with ID: 5 added
+2023-06-03 11:19:54 ERROR CompanyServiceImpl:81 - @DELETE - Company with ID: 10 doesn't exist
+2023-06-03 11:19:54 INFO  CompanyServiceImpl:78 - @DELETE - Company with ID: 1 deleted
+2023-06-03 11:19:54 ERROR CompanyServiceImpl:99 - @PUT - Company with ID: 1 doesn't exist
+2023-06-03 11:19:54 INFO  CompanyServiceImpl:96 - @PUT - Company with ID: 1 updated
+2023-06-03 11:19:54 INFO  CompanyServiceImpl:45 - @GET - Print company with ID: 5
+2023-06-03 11:19:54 ERROR CompanyServiceImpl:42 - @GET - Company with ID: 90 doesn't exist
+2023-06-03 11:19:54 INFO  CompanyServiceImpl:51 - @GET - Print historical data of company
+2023-06-03 11:19:54 INFO  CompanyServiceImpl:35 - @GET - Print all companies
+2023-06-03 11:19:54 ERROR CompanyServiceImpl:60 - @POST - Company with ID: 1 already exists
+2023-06-03 11:19:54 ERROR DeviceServiceImpl:86 - @PUT - Device with ID: 3 doesn't exist
+2023-06-03 11:19:54 ERROR DeviceServiceImpl:60 - @POST - Device with ID: 3 already exists
+2023-06-03 11:19:54 INFO  DeviceServiceImpl:83 - @PUT - Device with ID: 2 updated
+2023-06-03 11:19:54 INFO  DeviceServiceImpl:98 - @DELETE - Device with ID: 2 deleted
+2023-06-03 11:19:54 INFO  DeviceServiceImpl:66 - @POST - Device with ID: 3 added
+2023-06-03 11:19:54 INFO  DeviceServiceImpl:35 - @GET - Print all devices
+2023-06-03 11:19:54 ERROR DeviceServiceImpl:101 - @DELETE - Device with ID: 10 doesn't exist!!
+2023-06-03 11:19:54 INFO  DeviceServiceImpl:45 - @GET - Print device with ID: 3
+2023-06-03 11:19:54 INFO  DeviceServiceImpl:51 - @GET - Print historical data of device
+2023-06-03 11:19:54 ERROR DeviceServiceImpl:42 - @GET - Device with ID: 90 doesn't exist
+2023-06-03 11:19:54 INFO  UserServiceImpl:34 - @POST - User with username: john123 registered
+2023-06-03 11:19:54 ERROR UserServiceImpl:30 - User with username: carl2009 doesn't exist
+2023-06-03 11:22:48 ERROR VehicleServiceImpl:100 - @DELETE - Vehicle with ID: 10 doesn't exist!!
+2023-06-03 11:22:48 INFO  VehicleServiceImpl:82 - @PUT - Vehicle with ID: 1 updated
+2023-06-03 11:22:48 INFO  VehicleServiceImpl:97 - @DELETE - Vehicle with ID: 1 deleted
+2023-06-03 11:22:48 ERROR VehicleServiceImpl:60 - @POST - Vehicle with ID: 1 already exists
+2023-06-03 11:22:48 INFO  VehicleServiceImpl:51 - @GET - Print historical data of vehicle
+2023-06-03 11:22:48 ERROR VehicleServiceImpl:42 - @GET - Vehicle with ID: 90 doesn't exist
+2023-06-03 11:22:48 INFO  VehicleServiceImpl:35 - @GET - Print all Vehicles
+2023-06-03 11:22:48 INFO  VehicleServiceImpl:45 - @GET - Print vehicle with ID: 5
+2023-06-03 11:22:48 ERROR VehicleServiceImpl:85 - @PUT - Vehicle with ID: 3 doesn't exist
+2023-06-03 11:22:48 INFO  VehicleServiceImpl:66 - @POST - Vehicle with ID: 5 added
+2023-06-03 11:23:03 INFO  GpsServiceImpl:24 - @GET - Print all GPS data
+2023-06-03 11:23:04 ERROR UserController:43 - Login Failed!!
+2023-06-03 11:23:04 INFO  UserController:54 - User: username Login Successful!!
+2023-06-03 11:23:04 INFO  CompanyServiceImpl:66 - @POST - Company with ID: 5 added
+2023-06-03 11:23:04 ERROR CompanyServiceImpl:81 - @DELETE - Company with ID: 10 doesn't exist
+2023-06-03 11:23:04 INFO  CompanyServiceImpl:78 - @DELETE - Company with ID: 1 deleted
+2023-06-03 11:23:04 ERROR CompanyServiceImpl:99 - @PUT - Company with ID: 1 doesn't exist
+2023-06-03 11:23:04 INFO  CompanyServiceImpl:96 - @PUT - Company with ID: 1 updated
+2023-06-03 11:23:04 INFO  CompanyServiceImpl:45 - @GET - Print company with ID: 5
+2023-06-03 11:23:04 ERROR CompanyServiceImpl:42 - @GET - Company with ID: 90 doesn't exist
+2023-06-03 11:23:04 INFO  CompanyServiceImpl:51 - @GET - Print historical data of company
+2023-06-03 11:23:04 INFO  CompanyServiceImpl:35 - @GET - Print all companies
+2023-06-03 11:23:04 ERROR CompanyServiceImpl:60 - @POST - Company with ID: 1 already exists
+2023-06-03 11:23:04 ERROR DeviceServiceImpl:86 - @PUT - Device with ID: 3 doesn't exist
+2023-06-03 11:23:04 ERROR DeviceServiceImpl:60 - @POST - Device with ID: 3 already exists
+2023-06-03 11:23:05 INFO  DeviceServiceImpl:83 - @PUT - Device with ID: 2 updated
+2023-06-03 11:23:05 INFO  DeviceServiceImpl:98 - @DELETE - Device with ID: 2 deleted
+2023-06-03 11:23:05 INFO  DeviceServiceImpl:66 - @POST - Device with ID: 3 added
+2023-06-03 11:23:05 INFO  DeviceServiceImpl:35 - @GET - Print all devices
+2023-06-03 11:23:05 ERROR DeviceServiceImpl:101 - @DELETE - Device with ID: 10 doesn't exist!!
+2023-06-03 11:23:05 INFO  DeviceServiceImpl:45 - @GET - Print device with ID: 3
+2023-06-03 11:23:05 INFO  DeviceServiceImpl:51 - @GET - Print historical data of device
+2023-06-03 11:23:05 ERROR DeviceServiceImpl:42 - @GET - Device with ID: 90 doesn't exist
+2023-06-03 11:23:05 INFO  UserServiceImpl:34 - @POST - User with username: john123 registered
+2023-06-03 11:23:05 ERROR UserServiceImpl:30 - User with username: carl2009 doesn't exist
+2023-06-03 11:23:56 ERROR VehicleServiceImpl:100 - @DELETE - Vehicle with ID: 10 doesn't exist!!
+2023-06-03 11:23:56 INFO  VehicleServiceImpl:82 - @PUT - Vehicle with ID: 1 updated
+2023-06-03 11:23:56 INFO  VehicleServiceImpl:97 - @DELETE - Vehicle with ID: 1 deleted
+2023-06-03 11:23:56 ERROR VehicleServiceImpl:60 - @POST - Vehicle with ID: 1 already exists
+2023-06-03 11:23:56 INFO  VehicleServiceImpl:51 - @GET - Print historical data of vehicle
+2023-06-03 11:23:56 ERROR VehicleServiceImpl:42 - @GET - Vehicle with ID: 90 doesn't exist
+2023-06-03 11:23:56 INFO  VehicleServiceImpl:35 - @GET - Print all Vehicles
+2023-06-03 11:23:56 INFO  VehicleServiceImpl:45 - @GET - Print vehicle with ID: 5
+2023-06-03 11:23:56 ERROR VehicleServiceImpl:85 - @PUT - Vehicle with ID: 3 doesn't exist
+2023-06-03 11:23:56 INFO  VehicleServiceImpl:66 - @POST - Vehicle with ID: 5 added
+2023-06-03 11:24:12 INFO  GpsServiceImpl:24 - @GET - Print all GPS data
+2023-06-03 11:24:13 ERROR UserController:43 - Login Failed!!
+2023-06-03 11:24:13 INFO  UserController:54 - User: username Login Successful!!
+2023-06-03 11:24:13 INFO  CompanyServiceImpl:66 - @POST - Company with ID: 5 added
+2023-06-03 11:24:13 ERROR CompanyServiceImpl:81 - @DELETE - Company with ID: 10 doesn't exist
+2023-06-03 11:24:13 INFO  CompanyServiceImpl:78 - @DELETE - Company with ID: 1 deleted
+2023-06-03 11:24:13 ERROR CompanyServiceImpl:99 - @PUT - Company with ID: 1 doesn't exist
+2023-06-03 11:24:13 INFO  CompanyServiceImpl:96 - @PUT - Company with ID: 1 updated
+2023-06-03 11:24:13 INFO  CompanyServiceImpl:45 - @GET - Print company with ID: 5
+2023-06-03 11:24:13 ERROR CompanyServiceImpl:42 - @GET - Company with ID: 90 doesn't exist
+2023-06-03 11:24:13 INFO  CompanyServiceImpl:51 - @GET - Print historical data of company
+2023-06-03 11:24:13 INFO  CompanyServiceImpl:35 - @GET - Print all companies
+2023-06-03 11:24:13 ERROR CompanyServiceImpl:60 - @POST - Company with ID: 1 already exists
+2023-06-03 11:24:13 ERROR DeviceServiceImpl:86 - @PUT - Device with ID: 3 doesn't exist
+2023-06-03 11:24:13 ERROR DeviceServiceImpl:60 - @POST - Device with ID: 3 already exists
+2023-06-03 11:24:13 INFO  DeviceServiceImpl:83 - @PUT - Device with ID: 2 updated
+2023-06-03 11:24:13 INFO  DeviceServiceImpl:98 - @DELETE - Device with ID: 2 deleted
+2023-06-03 11:24:13 INFO  DeviceServiceImpl:66 - @POST - Device with ID: 3 added
+2023-06-03 11:24:13 INFO  DeviceServiceImpl:35 - @GET - Print all devices
+2023-06-03 11:24:13 ERROR DeviceServiceImpl:101 - @DELETE - Device with ID: 10 doesn't exist!!
+2023-06-03 11:24:13 INFO  DeviceServiceImpl:45 - @GET - Print device with ID: 3
+2023-06-03 11:24:13 INFO  DeviceServiceImpl:51 - @GET - Print historical data of device
+2023-06-03 11:24:13 ERROR DeviceServiceImpl:42 - @GET - Device with ID: 90 doesn't exist
+2023-06-03 11:24:14 INFO  UserServiceImpl:34 - @POST - User with username: john123 registered
+2023-06-03 11:24:14 ERROR UserServiceImpl:30 - User with username: carl2009 doesn't exist
+2023-06-03 11:24:58 ERROR VehicleServiceImpl:100 - @DELETE - Vehicle with ID: 10 doesn't exist!!
+2023-06-03 11:24:58 INFO  VehicleServiceImpl:82 - @PUT - Vehicle with ID: 1 updated
+2023-06-03 11:24:58 INFO  VehicleServiceImpl:97 - @DELETE - Vehicle with ID: 1 deleted
+2023-06-03 11:24:58 ERROR VehicleServiceImpl:60 - @POST - Vehicle with ID: 1 already exists
+2023-06-03 11:24:58 INFO  VehicleServiceImpl:51 - @GET - Print historical data of vehicle
+2023-06-03 11:24:58 ERROR VehicleServiceImpl:42 - @GET - Vehicle with ID: 90 doesn't exist
+2023-06-03 11:24:58 INFO  VehicleServiceImpl:35 - @GET - Print all Vehicles
+2023-06-03 11:24:58 INFO  VehicleServiceImpl:45 - @GET - Print vehicle with ID: 5
+2023-06-03 11:24:58 ERROR VehicleServiceImpl:85 - @PUT - Vehicle with ID: 3 doesn't exist
+2023-06-03 11:24:58 INFO  VehicleServiceImpl:66 - @POST - Vehicle with ID: 5 added
+2023-06-03 11:25:13 INFO  GpsServiceImpl:24 - @GET - Print all GPS data
+2023-06-03 11:25:14 ERROR UserController:43 - Login Failed!!
+2023-06-03 11:25:14 INFO  UserController:54 - User: username Login Successful!!
+2023-06-03 11:25:14 INFO  CompanyServiceImpl:66 - @POST - Company with ID: 5 added
+2023-06-03 11:25:14 ERROR CompanyServiceImpl:81 - @DELETE - Company with ID: 10 doesn't exist
+2023-06-03 11:25:14 INFO  CompanyServiceImpl:78 - @DELETE - Company with ID: 1 deleted
+2023-06-03 11:25:14 ERROR CompanyServiceImpl:99 - @PUT - Company with ID: 1 doesn't exist
+2023-06-03 11:25:14 INFO  CompanyServiceImpl:96 - @PUT - Company with ID: 1 updated
+2023-06-03 11:25:15 INFO  CompanyServiceImpl:45 - @GET - Print company with ID: 5
+2023-06-03 11:25:15 ERROR CompanyServiceImpl:42 - @GET - Company with ID: 90 doesn't exist
+2023-06-03 11:25:15 INFO  CompanyServiceImpl:51 - @GET - Print historical data of company
+2023-06-03 11:25:15 INFO  CompanyServiceImpl:35 - @GET - Print all companies
+2023-06-03 11:25:15 ERROR CompanyServiceImpl:60 - @POST - Company with ID: 1 already exists
+2023-06-03 11:25:15 ERROR DeviceServiceImpl:86 - @PUT - Device with ID: 3 doesn't exist
+2023-06-03 11:25:15 ERROR DeviceServiceImpl:60 - @POST - Device with ID: 3 already exists
+2023-06-03 11:25:15 INFO  DeviceServiceImpl:83 - @PUT - Device with ID: 2 updated
+2023-06-03 11:25:15 INFO  DeviceServiceImpl:98 - @DELETE - Device with ID: 2 deleted
+2023-06-03 11:25:15 INFO  DeviceServiceImpl:66 - @POST - Device with ID: 3 added
+2023-06-03 11:25:15 INFO  DeviceServiceImpl:35 - @GET - Print all devices
+2023-06-03 11:25:15 ERROR DeviceServiceImpl:101 - @DELETE - Device with ID: 10 doesn't exist!!
+2023-06-03 11:25:15 INFO  DeviceServiceImpl:45 - @GET - Print device with ID: 3
+2023-06-03 11:25:15 INFO  DeviceServiceImpl:51 - @GET - Print historical data of device
+2023-06-03 11:25:15 ERROR DeviceServiceImpl:42 - @GET - Device with ID: 90 doesn't exist
+2023-06-03 11:25:15 INFO  UserServiceImpl:34 - @POST - User with username: john123 registered
+2023-06-03 11:25:15 ERROR UserServiceImpl:30 - User with username: carl2009 doesn't exist
+2023-06-03 19:56:22 INFO  CompanyServiceImpl:35 - @GET - Print all companies
+2023-06-03 19:57:19 INFO  CompanyServiceImpl:45 - @GET - Print company with ID: 2
+2023-06-03 19:57:38 INFO  CompanyServiceImpl:45 - @GET - Print company with ID: 6
+2023-06-03 19:57:44 ERROR CompanyServiceImpl:42 - @GET - Company with ID: 99 doesn't exist
+2023-06-03 20:08:13 INFO  UserController:54 - User: mayur@2002 Login Successful!!
+2023-06-03 20:08:38 INFO  VehicleServiceImpl:97 - @DELETE - Vehicle with ID: 2 deleted
+2023-06-03 20:12:52 INFO  UserController:54 - User: mayur@2002 Login Successful!!
+2023-06-03 20:13:53 ERROR DeviceServiceImpl:101 - @DELETE - Device with ID: 1 doesn't exist!!
+2023-06-03 20:14:01 INFO  DeviceServiceImpl:98 - @DELETE - Device with ID: 3 deleted
+2023-06-03 20:14:20 ERROR DeviceServiceImpl:101 - @DELETE - Device with ID: 8 doesn't exist!!
+2023-06-03 20:14:42 INFO  DeviceServiceImpl:98 - @DELETE - Device with ID: 2 deleted
+2023-06-03 20:14:56 INFO  DeviceServiceImpl:35 - @GET - Print all devices
+2023-06-03 20:14:59 INFO  DeviceServiceImpl:35 - @GET - Print all devices
+2023-06-03 20:34:01 INFO  GpsServiceImpl:24 - @GET - Print all GPS data
+2023-06-03 20:34:02 ERROR DeviceServiceImpl:86 - @PUT - Device with ID: 3 doesn't exist
+2023-06-03 20:34:02 ERROR DeviceServiceImpl:60 - @POST - Device with ID: 3 already exists
+2023-06-03 20:34:02 INFO  DeviceServiceImpl:83 - @PUT - Device with ID: 2 updated
+2023-06-03 20:34:02 INFO  DeviceServiceImpl:98 - @DELETE - Device with ID: 2 deleted
+2023-06-03 20:34:02 INFO  DeviceServiceImpl:66 - @POST - Device with ID: 3 added
+2023-06-03 20:34:02 INFO  DeviceServiceImpl:35 - @GET - Print all devices
+2023-06-03 20:34:02 ERROR DeviceServiceImpl:101 - @DELETE - Device with ID: 10 doesn't exist!!
+2023-06-03 20:34:02 INFO  DeviceServiceImpl:45 - @GET - Print device with ID: 3
+2023-06-03 20:34:02 INFO  DeviceServiceImpl:51 - @GET - Print historical data of device
+2023-06-03 20:34:02 ERROR DeviceServiceImpl:42 - @GET - Device with ID: 90 doesn't exist
+2023-06-03 20:34:02 ERROR VehicleServiceImpl:100 - @DELETE - Vehicle with ID: 10 doesn't exist!!
+2023-06-03 20:34:02 INFO  VehicleServiceImpl:82 - @PUT - Vehicle with ID: 1 updated
+2023-06-03 20:34:02 INFO  VehicleServiceImpl:97 - @DELETE - Vehicle with ID: 1 deleted
+2023-06-03 20:34:02 ERROR VehicleServiceImpl:60 - @POST - Vehicle with ID: 1 already exists
+2023-06-03 20:34:02 INFO  VehicleServiceImpl:51 - @GET - Print historical data of vehicle
+2023-06-03 20:34:02 ERROR VehicleServiceImpl:42 - @GET - Vehicle with ID: 90 doesn't exist
+2023-06-03 20:34:02 INFO  VehicleServiceImpl:35 - @GET - Print all Vehicles
+2023-06-03 20:34:02 INFO  VehicleServiceImpl:45 - @GET - Print vehicle with ID: 5
+2023-06-03 20:34:02 ERROR VehicleServiceImpl:85 - @PUT - Vehicle with ID: 3 doesn't exist
+2023-06-03 20:34:02 INFO  VehicleServiceImpl:66 - @POST - Vehicle with ID: 5 added
+2023-06-03 20:34:02 ERROR UserController:43 - Login Failed!!
+2023-06-03 20:34:02 INFO  UserController:54 - User: username Login Successful!!
+2023-06-03 20:34:02 INFO  CompanyServiceImpl:66 - @POST - Company with ID: 5 added
+2023-06-03 20:34:02 ERROR CompanyServiceImpl:81 - @DELETE - Company with ID: 10 doesn't exist
+2023-06-03 20:34:02 INFO  CompanyServiceImpl:78 - @DELETE - Company with ID: 1 deleted
+2023-06-03 20:34:02 ERROR CompanyServiceImpl:99 - @PUT - Company with ID: 1 doesn't exist
+2023-06-03 20:34:02 INFO  CompanyServiceImpl:96 - @PUT - Company with ID: 1 updated
+2023-06-03 20:34:02 INFO  CompanyServiceImpl:45 - @GET - Print company with ID: 5
+2023-06-03 20:34:02 ERROR CompanyServiceImpl:42 - @GET - Company with ID: 90 doesn't exist
+2023-06-03 20:34:02 INFO  CompanyServiceImpl:51 - @GET - Print historical data of company
+2023-06-03 20:34:02 INFO  CompanyServiceImpl:35 - @GET - Print all companies
+2023-06-03 20:34:02 ERROR CompanyServiceImpl:60 - @POST - Company with ID: 1 already exists
+2023-06-03 20:34:03 INFO  UserServiceImpl:34 - @POST - User with username: john123 registered
+2023-06-03 20:34:03 ERROR UserServiceImpl:30 - User with username: carl2009 doesn't exist
+2023-06-03 20:35:05 INFO  GpsServiceImpl:24 - @GET - Print all GPS data
+2023-06-03 20:35:05 ERROR DeviceServiceImpl:86 - @PUT - Device with ID: 3 doesn't exist
+2023-06-03 20:35:05 ERROR DeviceServiceImpl:60 - @POST - Device with ID: 3 already exists
+2023-06-03 20:35:05 INFO  DeviceServiceImpl:83 - @PUT - Device with ID: 2 updated
+2023-06-03 20:35:05 INFO  DeviceServiceImpl:98 - @DELETE - Device with ID: 2 deleted
+2023-06-03 20:35:05 INFO  DeviceServiceImpl:66 - @POST - Device with ID: 3 added
+2023-06-03 20:35:05 INFO  DeviceServiceImpl:35 - @GET - Print all devices
+2023-06-03 20:35:05 ERROR DeviceServiceImpl:101 - @DELETE - Device with ID: 10 doesn't exist!!
+2023-06-03 20:35:05 INFO  DeviceServiceImpl:45 - @GET - Print device with ID: 3
+2023-06-03 20:35:05 INFO  DeviceServiceImpl:51 - @GET - Print historical data of device
+2023-06-03 20:35:05 ERROR DeviceServiceImpl:42 - @GET - Device with ID: 90 doesn't exist
+2023-06-03 20:35:06 ERROR VehicleServiceImpl:100 - @DELETE - Vehicle with ID: 10 doesn't exist!!
+2023-06-03 20:35:06 INFO  VehicleServiceImpl:82 - @PUT - Vehicle with ID: 1 updated
+2023-06-03 20:35:06 INFO  VehicleServiceImpl:97 - @DELETE - Vehicle with ID: 1 deleted
+2023-06-03 20:35:06 ERROR VehicleServiceImpl:60 - @POST - Vehicle with ID: 1 already exists
+2023-06-03 20:35:06 INFO  VehicleServiceImpl:51 - @GET - Print historical data of vehicle
+2023-06-03 20:35:06 ERROR VehicleServiceImpl:42 - @GET - Vehicle with ID: 90 doesn't exist
+2023-06-03 20:35:06 INFO  VehicleServiceImpl:35 - @GET - Print all Vehicles
+2023-06-03 20:35:06 INFO  VehicleServiceImpl:45 - @GET - Print vehicle with ID: 5
+2023-06-03 20:35:06 ERROR VehicleServiceImpl:85 - @PUT - Vehicle with ID: 3 doesn't exist
+2023-06-03 20:35:06 INFO  VehicleServiceImpl:66 - @POST - Vehicle with ID: 5 added
+2023-06-03 20:35:06 ERROR UserController:43 - Login Failed!!
+2023-06-03 20:35:06 INFO  UserController:54 - User: username Login Successful!!
+2023-06-03 20:35:06 INFO  CompanyServiceImpl:66 - @POST - Company with ID: 5 added
+2023-06-03 20:35:06 ERROR CompanyServiceImpl:81 - @DELETE - Company with ID: 10 doesn't exist
+2023-06-03 20:35:06 INFO  CompanyServiceImpl:78 - @DELETE - Company with ID: 1 deleted
+2023-06-03 20:35:06 ERROR CompanyServiceImpl:99 - @PUT - Company with ID: 1 doesn't exist
+2023-06-03 20:35:06 INFO  CompanyServiceImpl:96 - @PUT - Company with ID: 1 updated
+2023-06-03 20:35:06 INFO  CompanyServiceImpl:45 - @GET - Print company with ID: 5
+2023-06-03 20:35:06 ERROR CompanyServiceImpl:42 - @GET - Company with ID: 90 doesn't exist
+2023-06-03 20:35:06 INFO  CompanyServiceImpl:51 - @GET - Print historical data of company
+2023-06-03 20:35:06 INFO  CompanyServiceImpl:35 - @GET - Print all companies
+2023-06-03 20:35:06 ERROR CompanyServiceImpl:60 - @POST - Company with ID: 1 already exists
+2023-06-03 20:35:06 INFO  UserServiceImpl:34 - @POST - User with username: john123 registered
+2023-06-03 20:35:06 ERROR UserServiceImpl:30 - User with username: carl2009 doesn't exist
+2023-06-03 20:38:44 INFO  UserController:54 - User: mayur@2002 Login Successful!!
+2023-06-03 20:39:14 INFO  DeviceServiceImpl:66 - @POST - Device with ID: 0 added
+2023-06-03 20:39:27 ERROR DeviceServiceImpl:60 - @POST - Device with ID: 0 already exists

@@ -61,7 +61,7 @@ public class UserServiceTest {
         UserAlreadyExistsException exception = assertThrows(UserAlreadyExistsException.class, () -> userService.register(existingUser));
 
 
-        assertEquals("User with this username already exists", exception.getMessage());
+        assertEquals("User with username: "+existingUser.getUsername()+" already exists", exception.getMessage());
 
 
         verify(userRepository).findById(existingUser.getUsername());

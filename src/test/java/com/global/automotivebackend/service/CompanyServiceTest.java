@@ -91,7 +91,7 @@ class CompanyServiceTest {
 
         Company company =  new Company(5, "Meta", "California", null, null, "Mayur", "Mayur");
         GenericResponse testCase1 = new GenericResponse();
-        testCase1.setMessage("Company with " + company.getCompanyId() + " is added");
+        testCase1.setMessage("Company with ID: " + company.getCompanyId() + " added");
         testCase1.setStatus(true);
 
         when(companyRepository.findById(company.getCompanyId())).thenReturn(Optional.empty());
@@ -116,7 +116,7 @@ class CompanyServiceTest {
         IdAlreadyExistsException exception = assertThrows(IdAlreadyExistsException.class, () -> companyService.addCompany(company, timestamp));
 
 
-        assertEquals("Company ID already exists", exception.getMessage());
+        assertEquals("Company with ID: "+company.getCompanyId()+" already exists", exception.getMessage());
 
 
     }
@@ -135,7 +135,7 @@ class CompanyServiceTest {
 
         assertNotNull(response);
         assertTrue(response.isStatus());
-        assertEquals("Company with " + companyId + " is deleted", response.getMessage());
+        assertEquals("Company with ID: " + companyId + " deleted", response.getMessage());
 
 
         verify(companyRepository).findById(companyId);
@@ -152,7 +152,7 @@ class CompanyServiceTest {
         IdNotFoundException exception = assertThrows(IdNotFoundException.class, () -> companyService.deleteCompanyById(companyId));
 
 
-        assertEquals("Company ID doesn't exists", exception.getMessage());
+        assertEquals("Company with ID: "+companyId+" doesn't exist", exception.getMessage());
 
     }
 
@@ -174,7 +174,7 @@ class CompanyServiceTest {
 
         assertNotNull(response);
         assertTrue(response.isStatus());
-        assertEquals("Company with " + companyId + " is updated", response.getMessage());
+        assertEquals("Company with ID: " + companyId + " updated", response.getMessage());
 
 
         verify(companyRepository).findById(companyId);
@@ -194,7 +194,7 @@ class CompanyServiceTest {
         IdNotFoundException exception = assertThrows(IdNotFoundException.class, () -> companyService.updateCompany(updatedCompany, modifiedTime));
 
 
-        assertEquals("Company ID doesn't exists", exception.getMessage());
+        assertEquals("Company with ID: "+companyId+" doesn't exist", exception.getMessage());
 
     }
 

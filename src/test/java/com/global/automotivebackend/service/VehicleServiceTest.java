@@ -97,7 +97,7 @@ public class VehicleServiceTest {
 
         Vehicle vehicle =   new Vehicle(5, 6, "XYZ Car", "GHI Company", 2015, LocalDateTime.now(), LocalDateTime.now(), "Mayur", "Mayur");
         GenericResponse testCase1 = new GenericResponse();
-        testCase1.setMessage("Vehicle with " + vehicle.getVehicleId() + " is added");
+        testCase1.setMessage("Vehicle with ID: " + vehicle.getVehicleId() + " added");
         testCase1.setStatus(true);
 
         when(vehicleRepository.findById(vehicle.getVehicleId())).thenReturn(Optional.empty());
@@ -122,7 +122,7 @@ public class VehicleServiceTest {
         IdAlreadyExistsException exception = assertThrows(IdAlreadyExistsException.class, () -> vehicleService.addVehicle(vehicle, timestamp));
 
 
-        assertEquals("Vehicle with this ID already exists", exception.getMessage());
+        assertEquals("Vehicle with ID: "+vehicle.getVehicleId()+" already exists", exception.getMessage());
 
 
     }
@@ -141,7 +141,7 @@ public class VehicleServiceTest {
 
         assertNotNull(response);
         assertTrue(response.isStatus());
-        assertEquals("Vehicle with id " + vehicleId + " is deleted", response.getMessage());
+        assertEquals("Vehicle with ID: " + vehicleId + " deleted", response.getMessage());
 
 
         verify(vehicleRepository).findById(vehicleId);
@@ -158,7 +158,7 @@ public class VehicleServiceTest {
         IdNotFoundException exception = assertThrows(IdNotFoundException.class, () -> vehicleService.deleteVehicleById(vehicleId));
 
 
-        assertEquals("Vehicle with this ID doesn't exists", exception.getMessage());
+        assertEquals("Vehicle with ID: "+vehicleId+" doesn't exist!!", exception.getMessage());
 
     }
 
@@ -180,7 +180,7 @@ public class VehicleServiceTest {
 
         assertNotNull(response);
         assertTrue(response.isStatus());
-        assertEquals("Vehicle with id " + vehicleId + " is updated", response.getMessage());
+        assertEquals("Vehicle with id " + vehicleId + " updated", response.getMessage());
 
 
         verify(vehicleRepository).findById(vehicleId);
@@ -200,7 +200,7 @@ public class VehicleServiceTest {
         IdNotFoundException exception = assertThrows(IdNotFoundException.class, () -> vehicleService.updateVehicle(updatedVehicle, modifiedTime));
 
 
-        assertEquals("Vehicle with this ID doesn't exists", exception.getMessage());
+        assertEquals("Vehicle with ID: "+vehicleId+" doesn't exist", exception.getMessage());
 
     }
 

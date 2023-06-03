@@ -92,7 +92,7 @@ public class CompanyServiceImpl implements CompanyService {
             CompanyHistorical companyHistorical = new CompanyHistorical(UUID.randomUUID(), company.getCompanyId(), company.getCompanyName(), company.getCompanyAddress(), searchedCompany.get().getCreatedTime(), modifiedTime, searchedCompany.get().getCreatedBy(), company.getModifiedBy());
             companyRepository.save(companyToBeUpdated);
             companyHistoricalRepository.save(companyHistorical);
-            crudResponse.setMessage("Company with ID: " + company.getCompanyId() + "  updated");
+            crudResponse.setMessage("Company with ID: " + company.getCompanyId() + " updated");
             logger.info("@PUT - Company with ID: " + company.getCompanyId() + " updated");
             crudResponse.setStatus(true);
         } else {

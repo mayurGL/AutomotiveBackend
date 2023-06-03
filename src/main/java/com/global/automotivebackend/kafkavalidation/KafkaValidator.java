@@ -4,10 +4,12 @@ import com.global.automotivebackend.model.Company;
 import com.global.automotivebackend.model.Device;
 import com.global.automotivebackend.model.Gps;
 import com.global.automotivebackend.model.Vehicle;
+import org.springframework.stereotype.Component;
 
+@Component
 public class KafkaValidator {
 
-    public static boolean isValidCompany(Company company){
+    public boolean isValidCompany(Company company){
         return company!=null
                 && company.getCompanyId()!=null
                 && company.getCompanyName()!=null
@@ -19,7 +21,7 @@ public class KafkaValidator {
     }
 
 
-    public static boolean isValidGps(Gps gps){
+    public boolean isValidGps(Gps gps){
         return gps!=null
                 && gps.getCreatedTime()!=null
                 && gps.getVehicleId()!=null
@@ -30,7 +32,7 @@ public class KafkaValidator {
                 && gps.getSpeed()!=null;
     }
 
-    public static boolean isValidDevice(Device device){
+    public boolean isValidDevice(Device device){
 
         return device!=null
                 && device.getDeviceId()!=null
@@ -42,7 +44,7 @@ public class KafkaValidator {
                 && device.getModifiedBy()!=null;
     }
 
-    public static boolean isValidVehicle(Vehicle vehicle){
+    public boolean isValidVehicle(Vehicle vehicle){
 
         return vehicle!=null
                 && vehicle.getVehicleId()!=null

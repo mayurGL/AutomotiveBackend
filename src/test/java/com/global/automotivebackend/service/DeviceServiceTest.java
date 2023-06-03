@@ -98,7 +98,7 @@ public class DeviceServiceTest {
 
         Device device = new Device(3, "sensor", "parking sensor", null, null, "Mayur", "Mayur");
         GenericResponse testCase1 = new GenericResponse();
-        testCase1.setMessage("Device with id " + device.getDeviceId() + " is added");
+        testCase1.setMessage("Device with ID: " + device.getDeviceId() + " added");
         testCase1.setStatus(true);
 
         when(deviceRepository.findById(device.getDeviceId())).thenReturn(Optional.empty());
@@ -123,7 +123,7 @@ public class DeviceServiceTest {
         IdAlreadyExistsException exception = assertThrows(IdAlreadyExistsException.class, () -> deviceService.addDevice(device, timestamp));
 
 
-        assertEquals("Device with this ID already exists", exception.getMessage());
+        assertEquals("Device with ID: "+device.getDeviceId()+" already exists", exception.getMessage());
 
 
     }
@@ -143,7 +143,7 @@ public class DeviceServiceTest {
 
         assertNotNull(response);
         assertTrue(response.isStatus());
-        assertEquals("Device with id " + deviceId + " is deleted", response.getMessage());
+        assertEquals("Device with ID: " + deviceId + " deleted", response.getMessage());
 
 
         verify(deviceRepository).findById(deviceId);
@@ -160,7 +160,7 @@ public class DeviceServiceTest {
         IdNotFoundException exception = assertThrows(IdNotFoundException.class, () -> deviceService.deleteDeviceById(deviceId));
 
 
-        assertEquals("Device with this ID doesn't exists", exception.getMessage());
+        assertEquals("Device with ID: "+deviceId+" doesn't exist!!", exception.getMessage());
 
     }
 
@@ -184,7 +184,7 @@ public class DeviceServiceTest {
 
         assertNotNull(response);
         assertTrue(response.isStatus());
-        assertEquals("Device with id " + deviceId + " is updated", response.getMessage());
+        assertEquals("Device with ID: " + deviceId + " updated", response.getMessage());
 
 
         verify(deviceRepository).findById(deviceId);
@@ -204,7 +204,7 @@ public class DeviceServiceTest {
         IdNotFoundException exception = assertThrows(IdNotFoundException.class, () -> deviceService.updateDevice(updatedDevice, modifiedTime));
 
 
-        assertEquals("Device with this ID doesn't exists", exception.getMessage());
+        assertEquals("Device with ID: "+deviceId+" doesn't exist", exception.getMessage());
 
     }
 
