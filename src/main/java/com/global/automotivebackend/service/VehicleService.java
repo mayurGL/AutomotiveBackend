@@ -8,18 +8,21 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/*
+ * Service interface for vehicle controller to handle
+ * vehicle entity and vehicle historical entity
+ */
 @Service
 public interface VehicleService {
-    public List<Vehicle> getAllVehicles();
+    List<Vehicle> getAllVehicles();
 
-    public Vehicle getVehicle(Integer id);
+    Vehicle getVehicle(Integer id);
 
-    public List<VehicleHistorical> getVehicleHistorical();
+    List<VehicleHistorical> getVehicleHistorical();
 
-    public GenericResponse addVehicle(Vehicle vehicle, LocalDateTime timestamp);
+    GenericResponse addVehicle(Vehicle vehicle, LocalDateTime timestamp);
 
-    public GenericResponse updateVehicle(Vehicle vehicle, LocalDateTime modifiedTime);
+    GenericResponse updateVehicle(Vehicle vehicle, LocalDateTime modifiedTime);
 
-    public GenericResponse deleteVehicleById(Integer vehicleId);
-
+    GenericResponse deleteVehicleById(Integer vehicleId);
 }

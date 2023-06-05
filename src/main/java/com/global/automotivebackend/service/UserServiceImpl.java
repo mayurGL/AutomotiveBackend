@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+/*
+ * UserService implementation class
+ */
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -23,10 +26,13 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
     }
 
+    /*
+     * Method to register a user
+     */
     @Override
     public GenericResponse register(User user) {
         Optional<User> userToBeFound = userRepository.findById(user.getUsername());
-        if (userToBeFound.isPresent()){
+        if (userToBeFound.isPresent()) {
             logger.error("User with username: " + user.getUsername() + " doesn't exist");
             throw new UserAlreadyExistsException("User with username: " + user.getUsername() + " already exists");
         } else {
@@ -36,8 +42,11 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    /*
+     * Method to validate user for login
+     */
     @Override
     public User validateUser(LoginUserRequest loginUserRequest) {
-       return userRepository.findByUsernameAndPassword(loginUserRequest.getUsername(), loginUserRequest.getPassword());
+        return userRepository.findByUsernameAndPassword(loginUserRequest.getUsername(), loginUserRequest.getPassword());
     }
 }

@@ -1,15 +1,16 @@
 package com.global.automotivebackend.repository;
 
-import com.global.automotivebackend.dto.LoginUserRequest;
 import com.global.automotivebackend.model.User;
 import org.springframework.data.cassandra.repository.AllowFiltering;
 import org.springframework.data.cassandra.repository.CassandraRepository;
 import org.springframework.stereotype.Repository;
 
+/*
+ * Repository class for user entity
+ */
 @Repository
-public interface UserRepository extends CassandraRepository <User, String>{
-   // public User findByUsername(String username);
+public interface UserRepository extends CassandraRepository<User, String> {
 
     @AllowFiltering
-    public User findByUsernameAndPassword(String username, String password);
+    User findByUsernameAndPassword(String username, String password);
 }

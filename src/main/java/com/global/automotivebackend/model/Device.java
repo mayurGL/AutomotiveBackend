@@ -12,6 +12,9 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
+/*
+ * Entity Class for device table
+ */
 @Table
 @Component
 @Data

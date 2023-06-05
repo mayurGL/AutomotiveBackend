@@ -9,6 +9,9 @@ import org.springframework.stereotype.Component;
 import java.security.Key;
 import java.util.concurrent.ConcurrentHashMap;
 
+/*
+ * Class to implement JWT Token
+ */
 @Component
 public class JwtUtil {
 
@@ -16,7 +19,7 @@ public class JwtUtil {
     private static final ConcurrentHashMap<String, User> tokenMap = new ConcurrentHashMap<>();
 
 
-    public static String generateToken(User user){
+    public static String generateToken(User user) {
 
         String token = Jwts.builder()
                 .claim("username", user.getUsername())
@@ -30,11 +33,11 @@ public class JwtUtil {
     }
 
 
-    public static User validateToken(String token){
+    public static User validateToken(String token) {
         return tokenMap.get(token);
     }
 
-    public static void invalidateToken(String token){
+    public static void invalidateToken(String token) {
         tokenMap.remove(token);
     }
 }

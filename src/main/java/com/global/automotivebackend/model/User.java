@@ -10,19 +10,19 @@ import org.springframework.data.cassandra.core.mapping.Column;
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.Table;
 
-
+/*
+ * Entity Class for user table
+ */
 @Table
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
 
-
     @PrimaryKey(value = "username")
     @NotNull(message = "Enter the username!!")
     @NotBlank(message = "Enter a valid username!!")
     private String username;
-
 
     @NotNull(message = "User email is mandatory!!")
     @NotBlank(message = "Enter a valid email id!")

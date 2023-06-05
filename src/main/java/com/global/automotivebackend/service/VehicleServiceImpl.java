@@ -16,6 +16,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+/*
+ * VehicleService implementation class
+ */
 @Service
 public class VehicleServiceImpl implements VehicleService {
 
@@ -31,35 +34,47 @@ public class VehicleServiceImpl implements VehicleService {
         this.vehicleHistoricalRepository = vehicleHistoricalRepository;
     }
 
+    /*
+     * Method to get list of all vehicles
+     */
     public List<Vehicle> getAllVehicles() {
         logger.info("@GET - Print all Vehicles");
         return vehicleRepository.findAll();
     }
 
+    /*
+     * Method to get vehicle by ID
+     */
     public Vehicle getVehicle(Integer id) {
         Optional<Vehicle> vehicleToBeFound = vehicleRepository.findById(id);
-        if (vehicleToBeFound.isEmpty()){
+        if (vehicleToBeFound.isEmpty()) {
             logger.error("@GET - Vehicle with ID: " + id + " doesn't exist");
             throw new IdNotFoundException("Vehicle with ID: " + id + " doesn't exist");
-        }else {
+        } else {
             logger.info("@GET - Print vehicle with ID: " + id);
             return vehicleToBeFound.get();
         }
     }
 
+    /*
+     * Method to get historical data of vehicle
+     */
     public List<VehicleHistorical> getVehicleHistorical() {
         logger.info("@GET - Print historical data of vehicle");
         return vehicleHistoricalRepository.findAll();
     }
 
+    /*
+     * Method to add vehicle
+     */
     public GenericResponse addVehicle(Vehicle vehicle, LocalDateTime timestamp) {
         GenericResponse crudResponse = new GenericResponse();
         Vehicle vehicleToBeSaved = new Vehicle(vehicle.getVehicleId(), vehicle.getCompanyId(), vehicle.getMake(), vehicle.getModel(), vehicle.getYear(), timestamp, timestamp, vehicle.getCreatedBy(), vehicle.getModifiedBy());
         VehicleHistorical vehicleHistorical = new VehicleHistorical(UUID.randomUUID(), vehicle.getVehicleId(), vehicle.getCompanyId(), vehicle.getMake(), vehicle.getModel(), vehicle.getYear(), timestamp, timestamp, vehicle.getCreatedBy(), vehicle.getModifiedBy());
-        if (vehicleRepository.findById(vehicleToBeSaved.getVehicleId()).isPresent()){
+        if (vehicleRepository.findById(vehicleToBeSaved.getVehicleId()).isPresent()) {
             logger.error("@POST - Vehicle with ID: " + vehicle.getVehicleId() + " already exists");
             throw new IdAlreadyExistsException("Vehicle with ID: " + vehicle.getVehicleId() + " already exists");
-        }else {
+        } else {
             vehicleRepository.save(vehicleToBeSaved);
             vehicleHistoricalRepository.save(vehicleHistorical);
             crudResponse.setMessage("Vehicle with ID: " + vehicle.getVehicleId() + " added");
@@ -69,6 +84,27 @@ public class VehicleServiceImpl implements VehicleService {
         }
     }
 
+    /*
+     * Method to delete vehicle
+     */
+    public GenericResponse deleteVehicleById(Integer vehicleId) {
+        GenericResponse crudResponse = new GenericResponse();
+        Optional<Vehicle> vehicle = vehicleRepository.findById(vehicleId);
+        if (vehicle.isPresent()) {
+            vehicleRepository.deleteById(vehicleId);
+            crudResponse.setMessage("Vehicle with ID: " + vehicleId + " deleted");
+            logger.info("@DELETE - Vehicle with ID: " + vehicleId + " deleted");
+            crudResponse.setStatus(true);
+        } else {
+            logger.error("@DELETE - Vehicle with ID: " + vehicleId + " doesn't exist!!");
+            throw new IdNotFoundException("Vehicle with ID: " + vehicleId + " doesn't exist!!");
+        }
+        return crudResponse;
+    }
+
+    /*
+     * Method to update vehicle
+     */
     public GenericResponse updateVehicle(Vehicle vehicle, LocalDateTime modifiedTime) {
         GenericResponse crudResponse = new GenericResponse();
         Optional<Vehicle> searchedVehicles = vehicleRepository.findById(vehicle.getVehicleId());
@@ -84,21 +120,6 @@ public class VehicleServiceImpl implements VehicleService {
         } else {
             logger.error("@PUT - Vehicle with ID: " + vehicle.getVehicleId() + " doesn't exist");
             throw new IdNotFoundException("Vehicle with ID: " + vehicle.getVehicleId() + " doesn't exist");
-        }
-        return crudResponse;
-    }
-
-    public GenericResponse deleteVehicleById(Integer vehicleId) {
-        GenericResponse crudResponse = new GenericResponse();
-        Optional<Vehicle> vehicle = vehicleRepository.findById(vehicleId);
-        if (vehicle.isPresent()) {
-            vehicleRepository.deleteById(vehicleId);
-            crudResponse.setMessage("Vehicle with ID: " + vehicleId + " deleted");
-            logger.info("@DELETE - Vehicle with ID: " + vehicleId + " deleted");
-            crudResponse.setStatus(true);
-        } else {
-            logger.error("@DELETE - Vehicle with ID: " + vehicleId + " doesn't exist!!");
-            throw new IdNotFoundException("Vehicle with ID: " + vehicleId + " doesn't exist!!");
         }
         return crudResponse;
     }

@@ -5,6 +5,9 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+/*
+ * Class to help in getting user login data from Front-End
+ */
 @Data
 @AllArgsConstructor
 public class LoginUserRequest {

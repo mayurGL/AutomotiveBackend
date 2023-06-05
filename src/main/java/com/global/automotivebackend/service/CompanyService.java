@@ -8,17 +8,21 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/*
+ * Service interface for company controller to handle
+ * company entity and company historical entity
+ */
 @Service
 public interface CompanyService {
-    public List<Company> getAllCompanies();
+    List<Company> getAllCompanies();
 
-    public Company getCompany(Integer id);
+    Company getCompany(Integer id);
 
-    public List<CompanyHistorical> getCompanyHistorical();
+    List<CompanyHistorical> getCompanyHistorical();
 
-    public GenericResponse addCompany(Company company, LocalDateTime timestamp);
+    GenericResponse addCompany(Company company, LocalDateTime timestamp);
 
-    public GenericResponse deleteCompanyById(Integer companyId);
+    GenericResponse deleteCompanyById(Integer companyId);
 
-    public GenericResponse updateCompany(Company company, LocalDateTime modifiedTime);
+    GenericResponse updateCompany(Company company, LocalDateTime modifiedTime);
 }

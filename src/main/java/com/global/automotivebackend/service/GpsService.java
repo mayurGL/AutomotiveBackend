@@ -4,6 +4,9 @@ import com.global.automotivebackend.model.Gps;
 
 import java.util.List;
 
+/*
+ * Service interface for gps controller to handle GPS entity
+ */
 public interface GpsService {
-    public List<Gps> getAllGps();
+    List<Gps> getAllGps();
 }

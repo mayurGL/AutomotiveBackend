@@ -6,6 +6,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
 
+/*
+ * Repository class for device historical entity
+ */
 @Repository
 public interface DeviceHistoricalRepository extends CassandraRepository<DeviceHistorical, UUID> {
 }
