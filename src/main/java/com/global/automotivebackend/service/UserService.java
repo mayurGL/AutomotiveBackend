@@ -5,8 +5,11 @@ import com.global.automotivebackend.dto.LoginUserRequest;
 import com.global.automotivebackend.model.User;
 import org.springframework.stereotype.Service;
 
+/*
+ * Service interface for user controller to handle user entity
+ */
 @Service
 public interface UserService {
-    public GenericResponse register(User user);
-    public User validateUser(LoginUserRequest loginUserRequest);
+    GenericResponse register(User user);
+    User validateUser(LoginUserRequest loginUserRequest);
 }

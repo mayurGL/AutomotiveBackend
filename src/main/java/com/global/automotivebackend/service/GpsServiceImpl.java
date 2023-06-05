@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/*
+ * GpsService implementation class
+ */
 @Service
 public class GpsServiceImpl implements GpsService {
 
@@ -20,6 +23,9 @@ public class GpsServiceImpl implements GpsService {
         this.gpsRepository = gpsRepository;
     }
 
+    /*
+     * Method to get list of all Gps data
+     */
     public List<Gps> getAllGps() {
         logger.info("@GET - Print all GPS data");
         return gpsRepository.findAll();

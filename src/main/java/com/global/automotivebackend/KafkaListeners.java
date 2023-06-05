@@ -13,8 +13,10 @@ import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
-import static com.global.automotivebackend.kafkavalidation.KafkaValidator.*;
-
+/*
+ * Class for kafka listeners
+ * to handle real-time data from kafka
+ */
 @Component
 @AllArgsConstructor
 public class KafkaListeners {
@@ -43,15 +45,12 @@ public class KafkaListeners {
     @Autowired
     private KafkaValidator kafkaValidator;
 
-
     @KafkaListener(topics = "companyTopic", groupId = "groupId")
     void companyTopicListener(String data) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
         Company company = objectMapper.readValue(data, Company.class);
-
-
-        if(kafkaValidator.isValidCompany(company)){
+        if (kafkaValidator.isValidCompany(company)) {
             CompanyHistorical companyHistorical = new CompanyHistorical(UUID.randomUUID(), company.getCompanyId(), company.getCompanyName(), company.getCompanyAddress(), company.getCreatedTime(), company.getModifiedTime(), company.getCreatedBy(), company.getModifiedBy());
             companyRepository.save(company);
             companyHistoricalRepository.save(companyHistorical);
@@ -63,11 +62,9 @@ public class KafkaListeners {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
         Gps gps = objectMapper.readValue(data, Gps.class);
-
-        if(kafkaValidator.isValidGps(gps)){
+        if (kafkaValidator.isValidGps(gps)) {
             gpsRepository.save(gps);
         }
-
     }
 
     @KafkaListener(topics = "deviceTopic", groupId = "groupId")
@@ -75,13 +72,11 @@ public class KafkaListeners {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
         Device device = objectMapper.readValue(data, Device.class);
-
-        if(kafkaValidator.isValidDevice(device)){
+        if (kafkaValidator.isValidDevice(device)) {
             DeviceHistorical deviceHistorical = new DeviceHistorical(UUID.randomUUID(), device.getDeviceId(), device.getDeviceType(), device.getDeviceName(), device.getCreatedTime(), device.getModifiedTime(), device.getCreatedBy(), device.getModifiedBy());
             deviceRepository.save(device);
             deviceHistoricalRepository.save(deviceHistorical);
         }
-
     }
 
     @KafkaListener(topics = "vehicleTopic", groupId = "groupId")
@@ -89,12 +84,10 @@ public class KafkaListeners {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
         Vehicle vehicle = objectMapper.readValue(data, Vehicle.class);
-
-        if(kafkaValidator.isValidVehicle(vehicle)){
+        if (kafkaValidator.isValidVehicle(vehicle)) {
             VehicleHistorical vehicleHistorical = new VehicleHistorical(UUID.randomUUID(), vehicle.getVehicleId(), vehicle.getCompanyId(), vehicle.getMake(), vehicle.getModel(), vehicle.getYear(), vehicle.getCreatedTime(), vehicle.getModifiedTime(), vehicle.getCreatedBy(), vehicle.getModifiedBy());
             vehicleRepository.save(vehicle);
             vehicleHistoricalRepository.save(vehicleHistorical);
         }
-
     }
 }

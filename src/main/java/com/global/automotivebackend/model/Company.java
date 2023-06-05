@@ -11,7 +11,9 @@ import org.springframework.data.cassandra.core.mapping.Table;
 
 import java.time.LocalDateTime;
 
-
+/*
+ * Entity Class for company table
+ */
 @Table
 @Data
 @NoArgsConstructor

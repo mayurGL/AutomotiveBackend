@@ -8,17 +8,21 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/*
+ * Service interface for device controller to handle
+ * device entity and device historical entity
+ */
 @Service
 public interface DeviceService {
-    public List<Device> getAllDevices();
+    List<Device> getAllDevices();
 
-    public Device getDevice(Integer id);
+    Device getDevice(Integer id);
 
-    public List<DeviceHistorical> getDeviceHistorical();
+    List<DeviceHistorical> getDeviceHistorical();
 
-    public GenericResponse addDevice(Device device, LocalDateTime timestamp);
+    GenericResponse addDevice(Device device, LocalDateTime timestamp);
 
-    public GenericResponse updateDevice(Device device, LocalDateTime modifiedTime);
+    GenericResponse updateDevice(Device device, LocalDateTime modifiedTime);
 
-    public GenericResponse deleteDeviceById(Integer deviceId);
+    GenericResponse deleteDeviceById(Integer deviceId);
 }

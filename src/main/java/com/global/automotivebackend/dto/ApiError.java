@@ -7,9 +7,9 @@ import org.springframework.http.HttpStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-//====================================================================================
-// = Class to Help In Displaying Formatted Validation Failed Messages
-// ====================================================================================
+/*
+ * Class to help in displaying formatted validation failed messages
+ */
 @Data
 @AllArgsConstructor
 public class ApiError {

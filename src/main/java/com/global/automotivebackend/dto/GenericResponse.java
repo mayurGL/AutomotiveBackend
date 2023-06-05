@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/*
+ * Class to help in sending response in custom format
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

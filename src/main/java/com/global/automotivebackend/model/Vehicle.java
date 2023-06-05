@@ -12,6 +12,9 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
+/*
+ * Entity Class for vehicle table
+ */
 @Table
 @Component
 @Data
